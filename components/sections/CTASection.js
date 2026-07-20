@@ -14,8 +14,8 @@ export function CTASection({
     <section
       className={
         isGradient
-          ? 'relative overflow-hidden bg-gradient-to-br from-[#0A2540] via-[#0d3060] to-[#00A6FB] py-20'
-          : 'bg-[#F8FAFC] py-20'
+          ? 'relative overflow-hidden bg-gradient-to-br from-[#0A2540] via-[#0d3060] to-[#00A6FB] py-14 sm:py-20'
+          : 'bg-[#F8FAFC] py-14 sm:py-20'
       }
     >
       {/* Background pattern */}
@@ -39,7 +39,7 @@ export function CTASection({
 
         {/* Heading */}
         <h2
-          className={`mb-4 text-3xl font-bold md:text-4xl lg:text-5xl ${
+          className={`mb-4 text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl ${
             isGradient ? 'text-white' : 'text-[#0A2540]'
           }`}
         >
@@ -48,7 +48,7 @@ export function CTASection({
 
         {/* Subheading */}
         <p
-          className={`mx-auto mb-8 max-w-2xl text-lg leading-relaxed ${
+          className={`mx-auto mb-8 max-w-2xl text-base leading-relaxed sm:text-lg ${
             isGradient ? 'text-white/80' : 'text-muted-foreground'
           }`}
         >
@@ -56,7 +56,7 @@ export function CTASection({
         </p>
 
         {/* Trust indicators */}
-        <div className="mb-10 flex flex-wrap items-center justify-center gap-6">
+        <div className="mb-8 flex flex-wrap items-center justify-center gap-3 sm:gap-6">
           {[
             { icon: Clock, text: 'Quick Decision' },
             { icon: Shield, text: 'No Hidden Fees' },
@@ -78,7 +78,7 @@ export function CTASection({
         <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
           <Link
             href={primaryCTA.href}
-            className={`inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.98] ${
+            className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4 sm:text-base ${
               isGradient
                 ? 'bg-white text-[#0A2540] hover:bg-[#F8FAFC]'
                 : 'bg-[#00A6FB] text-white hover:bg-[#0097e8]'
@@ -91,7 +91,7 @@ export function CTASection({
           {secondaryCTA && (
             <Link
               href={secondaryCTA.href}
-              className={`inline-flex items-center gap-2 rounded-xl px-8 py-4 text-base font-semibold transition-colors ${
+              className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-base ${
                 isGradient
                   ? 'text-white/90 hover:text-white'
                   : 'text-[#0A2540] hover:text-[#00A6FB]'

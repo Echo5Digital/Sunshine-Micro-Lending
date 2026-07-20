@@ -171,10 +171,10 @@ export default function FAQPage() {
           <Breadcrumb items={breadcrumbs} className="mb-6" />
           <div className="max-w-3xl">
             <span className="section-label mb-4">Expert Answers</span>
-            <h1 className="mt-4 text-4xl font-bold text-[#0A2540] md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[#0A2540] sm:text-4xl md:text-5xl">
               Florida Payday Loan FAQ
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               Straightforward answers to every question Florida borrowers ask about payday loans,
               fees, repayment, and their legal rights.
             </p>

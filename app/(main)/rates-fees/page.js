@@ -74,10 +74,10 @@ export default function RatesFeesPage() {
           <Breadcrumb items={breadcrumbs} className="mb-6" />
           <div className="max-w-3xl">
             <span className="section-label mb-4">Full Transparency</span>
-            <h1 className="mt-4 text-4xl font-bold text-[#0A2540] md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[#0A2540] sm:text-4xl md:text-5xl">
               Rates & Fees: Nothing Hidden
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               We believe you should know exactly what a loan costs before you apply.
               Here is every fee, explained clearly and completely.
             </p>

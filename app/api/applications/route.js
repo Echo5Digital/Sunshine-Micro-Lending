@@ -5,7 +5,6 @@ import { sendApplicationEmail, sendAdminNotificationEmail } from '@/lib/email/re
 
 export async function POST(request) {
   try {
-    // Parse and validate request body
     let body;
     try {
       body = await request.json();
@@ -13,44 +12,35 @@ export async function POST(request) {
       return NextResponse.json({ error: 'Invalid request format.' }, { status: 400 });
     }
 
-    // Validate with Zod
     const validation = applicationSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
-        {
-          error: 'Validation failed.',
-          details: validation.error.flatten().fieldErrors,
-        },
+        { error: 'Validation failed.', details: validation.error.flatten().fieldErrors },
         { status: 422 }
       );
     }
 
     const data = validation.data;
-
-    // Generate reference number
     const referenceNumber = generateReferenceNumber();
-
-    // Get client IP for compliance/audit
     const ipAddress = getClientIp(request);
     const userAgent = request.headers.get('user-agent') || '';
 
-    // Calculate fees
     const loanAmount = parseFloat(data.loanAmount);
     const percentFee = loanAmount * 0.1;
     const verificationFee = 5.0;
     const estimatedFee = percentFee + verificationFee;
 
-    // Attempt to save to database
+    // Save to MongoDB
     try {
-      const { db } = await import('@/lib/db');
-      const { applications } = await import('@/drizzle/schema');
-
-      await db.insert(applications).values({
+      const { connectDB } = await import('@/lib/db');
+      const { Application } = await import('@/models/Application');
+      await connectDB();
+      await Application.create({
         firstName: sanitizeInput(data.firstName),
         lastName: sanitizeInput(data.lastName),
         email: sanitizeInput(data.email.toLowerCase()),
         phone: sanitizeInput(data.phone),
-        loanAmount: data.loanAmount.toString(),
+        loanAmount,
         loanType: data.loanType,
         payFrequency: data.payFrequency,
         employmentStatus: data.employmentStatus,
@@ -60,19 +50,17 @@ export async function POST(request) {
         ipAddress: sanitizeInput(ipAddress),
         userAgent: sanitizeInput(userAgent).substring(0, 500),
         referenceNumber,
-        estimatedFee: estimatedFee.toString(),
-        verificationFee: verificationFee.toString(),
+        estimatedFee,
+        verificationFee,
         status: 'pending',
-        loanPurpose: data.loanPurpose ? sanitizeInput(data.loanPurpose) : null,
-        monthlyIncome: data.monthlyIncome ? data.monthlyIncome.toString() : null,
-        employer: data.employer ? sanitizeInput(data.employer) : null,
+        loanPurpose: data.loanPurpose ? sanitizeInput(data.loanPurpose) : undefined,
+        monthlyIncome: data.monthlyIncome || undefined,
+        employer: data.employer ? sanitizeInput(data.employer) : undefined,
       });
     } catch (dbError) {
       console.error('Database error:', dbError);
-      // Continue with email even if DB fails
     }
 
-    // Send confirmation email to applicant
     try {
       await sendApplicationEmail({
         to: data.email,
@@ -87,7 +75,6 @@ export async function POST(request) {
       console.error('Email error (applicant):', emailError);
     }
 
-    // Send admin notification
     try {
       await sendAdminNotificationEmail({
         referenceNumber,
@@ -104,19 +91,12 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      {
-        success: true,
-        referenceNumber,
-        message: 'Application submitted successfully.',
-      },
+      { success: true, referenceNumber, message: 'Application submitted successfully.' },
       { status: 201 }
     );
   } catch (error) {
     console.error('Application API error:', error);
-    return NextResponse.json(
-      { error: 'Internal server error. Please try again.' },
-      { status: 500 }
-    );
+    return NextResponse.json({ error: 'Internal server error. Please try again.' }, { status: 500 });
   }
 }
 

@@ -82,7 +82,7 @@ export function ContactForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl border border-border bg-white p-6 shadow-card md:p-8"
+      className="rounded-2xl border border-border bg-white p-4 shadow-card sm:p-6 md:p-8"
       noValidate
       aria-label="Contact form"
     >

@@ -15,10 +15,7 @@ export async function POST(request) {
     const validation = contactSchema.safeParse(body);
     if (!validation.success) {
       return NextResponse.json(
-        {
-          error: 'Validation failed.',
-          details: validation.error.flatten().fieldErrors,
-        },
+        { error: 'Validation failed.', details: validation.error.flatten().fieldErrors },
         { status: 422 }
       );
     }
@@ -26,15 +23,15 @@ export async function POST(request) {
     const data = validation.data;
     const ipAddress = getClientIp(request);
 
-    // Save to database
+    // Save to MongoDB
     try {
-      const { db } = await import('@/lib/db');
-      const { contacts } = await import('@/drizzle/schema');
-
-      await db.insert(contacts).values({
+      const { connectDB } = await import('@/lib/db');
+      const { Contact } = await import('@/models/Contact');
+      await connectDB();
+      await Contact.create({
         name: sanitizeInput(data.name),
         email: sanitizeInput(data.email.toLowerCase()),
-        phone: data.phone ? sanitizeInput(data.phone) : null,
+        phone: data.phone ? sanitizeInput(data.phone) : undefined,
         subject: sanitizeInput(data.subject),
         message: sanitizeInput(data.message),
         ipAddress: sanitizeInput(ipAddress),
@@ -44,7 +41,6 @@ export async function POST(request) {
       console.error('Database error:', dbError);
     }
 
-    // Send admin notification
     try {
       await sendContactEmail({
         name: data.name,
@@ -57,7 +53,6 @@ export async function POST(request) {
       console.error('Email error (contact admin):', emailError);
     }
 
-    // Send confirmation to user
     try {
       await sendContactConfirmationEmail({
         to: data.email,

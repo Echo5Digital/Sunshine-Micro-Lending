@@ -98,7 +98,7 @@ export function ApplicationForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="rounded-2xl border border-border bg-white p-6 shadow-card md:p-8"
+      className="rounded-2xl border border-border bg-white p-4 shadow-card sm:p-6 md:p-8"
       noValidate
       aria-label="Payday Loan Application Form"
     >
@@ -147,7 +147,7 @@ export function ApplicationForm() {
 
         {/* Fee Preview */}
         <div className="mb-4 rounded-lg bg-[#F8FAFC] border border-border p-4">
-          <div className="grid grid-cols-3 gap-4 text-center text-sm">
+          <div className="grid grid-cols-3 gap-2 text-center text-sm sm:gap-4">
             <div>
               <div className="font-bold text-[#0A2540]">{formatCurrency(calc.totalFee)}</div>
               <div className="text-xs text-muted-foreground">Total Fee</div>

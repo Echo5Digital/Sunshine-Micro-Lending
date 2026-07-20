@@ -5,21 +5,18 @@ export async function GET() {
     status: 'ok',
     timestamp: new Date().toISOString(),
     environment: process.env.NODE_ENV,
-    version: process.env.npm_package_version || '1.0.0',
+    version: '1.0.0',
   };
 
-  // Check database connectivity
+  // Check MongoDB connectivity
   try {
-    const { db } = await import('@/lib/db');
-    const { sql } = await import('drizzle-orm');
-    await db.execute(sql`SELECT 1`);
+    const { connectDB } = await import('@/lib/db');
+    await connectDB();
     health.database = 'connected';
   } catch {
     health.database = 'disconnected';
     health.status = 'degraded';
   }
 
-  const statusCode = health.status === 'ok' ? 200 : 503;
-
-  return NextResponse.json(health, { status: statusCode });
+  return NextResponse.json(health, { status: health.status === 'ok' ? 200 : 503 });
 }

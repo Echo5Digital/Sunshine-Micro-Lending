@@ -43,7 +43,7 @@ export default function ApplyPage() {
               Your information is protected by 256-bit SSL encryption.
             </p>
             {/* Trust indicators */}
-            <div className="mt-5 flex flex-wrap gap-4">
+            <div className="mt-5 flex flex-wrap gap-2 sm:gap-4">
               {TRUST_INDICATORS.map((item) => (
                 <div key={item.text} className="flex items-center gap-1.5 text-sm text-white/80">
                   <item.icon className="h-4 w-4 text-[#22C55E]" />
@@ -58,7 +58,7 @@ export default function ApplyPage() {
       {/* Form Section */}
       <section className="section-padding bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-10 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-6 lg:grid-cols-3 lg:gap-10">
             {/* Main Form */}
             <div className="lg:col-span-2">
               <ApplicationForm />

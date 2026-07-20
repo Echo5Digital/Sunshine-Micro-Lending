@@ -50,10 +50,10 @@ export default function AboutPage() {
           <Breadcrumb items={breadcrumbs} className="mb-6" />
           <div className="max-w-3xl">
             <span className="section-label mb-4">Our Story</span>
-            <h1 className="mt-4 text-4xl font-bold text-[#0A2540] md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[#0A2540] sm:text-4xl md:text-5xl">
               About Sunshine Micro Lending
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               A Florida-licensed payday lender built on the conviction that short-term lending
               should be transparent, respectful, and genuinely helpful.
             </p>
@@ -64,9 +64,9 @@ export default function AboutPage() {
       {/* Mission */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 items-center gap-12 lg:grid-cols-2">
+          <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
             <div>
-              <h2 className="mb-5 text-3xl font-semibold text-[#0A2540]">Our Mission</h2>
+              <h2 className="mb-5 text-2xl font-semibold text-[#0A2540] sm:text-3xl">Our Mission</h2>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 Sunshine Micro Lending exists to provide Florida residents with access to
                 short-term credit when they need it most—without exploitation, confusion, or
@@ -93,7 +93,7 @@ export default function AboutPage() {
                 { value: 'OFR', label: 'Florida Licensed', description: 'Regulated & compliant' },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-border bg-[#F8FAFC] p-6 text-center">
-                  <div className="text-3xl font-bold text-[#00A6FB]">{stat.value}</div>
+                  <div className="text-2xl font-bold text-[#00A6FB] sm:text-3xl">{stat.value}</div>
                   <div className="mt-1 text-sm font-semibold text-[#0A2540]">{stat.label}</div>
                   <div className="mt-0.5 text-xs text-muted-foreground">{stat.description}</div>
                 </div>

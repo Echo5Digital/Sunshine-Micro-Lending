@@ -57,10 +57,10 @@ export default function ContactPage() {
           <Breadcrumb items={breadcrumbs} className="mb-6" />
           <div className="max-w-2xl">
             <span className="section-label mb-4">Get in Touch</span>
-            <h1 className="mt-4 text-4xl font-bold text-[#0A2540] md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[#0A2540] sm:text-4xl md:text-5xl">
               Contact Us
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               Questions about your application, loan terms, or your rights as a borrower?
               Our team is here to help—clearly and promptly.
             </p>
@@ -71,7 +71,7 @@ export default function ContactPage() {
       {/* Contact Content */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
-          <div className="grid grid-cols-1 gap-12 lg:grid-cols-3">
+          <div className="grid grid-cols-1 gap-8 lg:grid-cols-3 lg:gap-12">
             {/* Sidebar */}
             <div className="space-y-6">
               {CONTACT_INFO.map((item) => (

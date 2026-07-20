@@ -118,7 +118,7 @@ export default async function HomePage() {
       />
 
       {/* ─── HERO ────────────────────────────────────────────────── */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A2540] via-[#0d3060] to-[#0d3a7a] py-20 md:py-28">
+      <section className="relative overflow-hidden bg-gradient-to-br from-[#0A2540] via-[#0d3060] to-[#0d3a7a] py-14 sm:py-20 md:py-28">
         {/* Background mesh */}
         <div className="absolute inset-0 bg-mesh-pattern opacity-[0.04]" aria-hidden="true" />
         {/* Gradient orbs */}
@@ -126,17 +126,17 @@ export default async function HomePage() {
         <div className="absolute bottom-0 left-0 h-64 w-64 translate-y-1/2 -translate-x-1/2 rounded-full bg-[#22C55E]/10 blur-3xl" aria-hidden="true" />
 
         <div className="container relative mx-auto px-4">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
+          <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-12">
             {/* Left: Text */}
             <div className="text-center lg:text-left">
               {/* Badge */}
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90">
+              <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90">
                 <Shield className="h-3.5 w-3.5 text-[#22C55E]" />
                 Florida Licensed Payday Lender
               </div>
 
               {/* Headline */}
-              <h1 className="mb-6 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+              <h1 className="mb-5 text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl lg:text-6xl">
                 Fast. Simple.{' '}
                 <span className="bg-gradient-to-r from-[#00A6FB] to-[#22C55E] bg-clip-text text-transparent">
                   Transparent.
@@ -146,34 +146,34 @@ export default async function HomePage() {
               </h1>
 
               {/* Subheadline */}
-              <p className="mb-8 text-lg leading-relaxed text-white/75 md:text-xl">
+              <p className="mb-6 text-base leading-relaxed text-white/75 sm:text-lg md:text-xl">
                 Get up to <strong className="text-white">$500</strong> with a simple{' '}
                 <strong className="text-white">10% fee + $5</strong>. No hidden charges,
                 no rollovers. A Florida licensed lender you can trust.
               </p>
 
               {/* Trust indicators */}
-              <div className="mb-8 flex flex-wrap items-center justify-center gap-4 lg:justify-start">
+              <div className="mb-6 flex flex-wrap items-center justify-center gap-2 sm:gap-4 lg:justify-start">
                 {['Up to $500', 'No Hidden Fees', '60-Day Grace Period', 'Online Only'].map((item) => (
-                  <div key={item} className="flex items-center gap-1.5 text-sm text-white/80">
-                    <CheckCircle className="h-4 w-4 text-[#22C55E]" />
+                  <div key={item} className="flex items-center gap-1.5 text-xs text-white/80 sm:text-sm">
+                    <CheckCircle className="h-3.5 w-3.5 text-[#22C55E] sm:h-4 sm:w-4" />
                     {item}
                   </div>
                 ))}
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col items-center gap-4 sm:flex-row lg:justify-start">
+              <div className="flex flex-col items-center gap-3 sm:flex-row sm:gap-4 lg:justify-start">
                 <Link
                   href="/apply"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00A6FB] px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-200 hover:bg-[#0097e8] hover:shadow-xl active:scale-[0.98] sm:w-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#00A6FB] px-6 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-200 hover:bg-[#0097e8] hover:shadow-xl active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
                   Apply Now — Free
                   <ArrowRight className="h-4 w-4" />
                 </Link>
                 <Link
                   href="/how-it-works"
-                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 px-8 py-4 text-base font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10 sm:w-auto"
+                  className="inline-flex w-full items-center justify-center gap-2 rounded-xl border border-white/30 px-6 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:border-white/60 hover:bg-white/10 sm:w-auto sm:px-8 sm:py-4 sm:text-base"
                 >
                   How It Works
                 </Link>
@@ -181,7 +181,7 @@ export default async function HomePage() {
             </div>
 
             {/* Right: Calculator */}
-            <div className="w-full max-w-md mx-auto lg:mx-0 lg:max-w-none">
+            <div className="w-full">
               <LoanCalculator />
             </div>
           </div>
@@ -196,7 +196,7 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <span className="section-label mb-4">Simple Process</span>
-            <h2 className="mt-4 text-3xl font-semibold text-[#0A2540] md:text-4xl">
+            <h2 className="mt-4 text-2xl font-semibold text-[#0A2540] sm:text-3xl md:text-4xl">
               How Does a Payday Loan Work at Sunshine?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
@@ -245,7 +245,7 @@ export default async function HomePage() {
                 key={item.label}
                 className="flex flex-col items-center rounded-2xl border border-border bg-white p-6 text-center shadow-card"
               >
-                <div className="mb-1 text-3xl font-bold text-[#00A6FB] md:text-4xl">{item.value}</div>
+                <div className="mb-1 text-2xl font-bold text-[#00A6FB] sm:text-3xl md:text-4xl">{item.value}</div>
                 <div className="mb-1 text-sm font-semibold text-[#0A2540]">{item.label}</div>
                 <div className="text-xs text-muted-foreground">{item.description}</div>
               </div>
@@ -259,7 +259,7 @@ export default async function HomePage() {
         <div className="container mx-auto px-4">
           <div className="mb-12 text-center">
             <span className="section-label mb-4">Why Sunshine?</span>
-            <h2 className="mt-4 text-3xl font-semibold text-[#0A2540] md:text-4xl">
+            <h2 className="mt-4 text-2xl font-semibold text-[#0A2540] sm:text-3xl md:text-4xl">
               Built on Transparency and Trust
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
@@ -296,7 +296,7 @@ export default async function HomePage() {
             {/* Left: Header */}
             <div>
               <span className="section-label mb-4">Common Questions</span>
-              <h2 className="mt-4 text-3xl font-semibold text-[#0A2540] md:text-4xl">
+              <h2 className="mt-4 text-2xl font-semibold text-[#0A2540] sm:text-3xl md:text-4xl">
                 Frequently Asked Questions
               </h2>
               <p className="mt-4 text-muted-foreground">

@@ -13,29 +13,29 @@ export async function POST(request) {
 
     const validation = newsletterSchema.safeParse(body);
     if (!validation.success) {
-      return NextResponse.json(
-        { error: 'Invalid email address.' },
-        { status: 422 }
-      );
+      return NextResponse.json({ error: 'Invalid email address.' }, { status: 422 });
     }
 
     const { email, firstName } = validation.data;
     const ipAddress = getClientIp(request);
 
     try {
-      const { db } = await import('@/lib/db');
-      const { newsletterSubscribers } = await import('@/drizzle/schema');
-
-      await db
-        .insert(newsletterSubscribers)
-        .values({
-          email: sanitizeInput(email.toLowerCase()),
-          firstName: firstName ? sanitizeInput(firstName) : null,
-          ipAddress: sanitizeInput(ipAddress),
-          source: 'website',
-          isActive: true,
-        })
-        .onConflictDoNothing();
+      const { connectDB } = await import('@/lib/db');
+      const { NewsletterSubscriber } = await import('@/models/NewsletterSubscriber');
+      await connectDB();
+      await NewsletterSubscriber.findOneAndUpdate(
+        { email: sanitizeInput(email.toLowerCase()) },
+        {
+          $setOnInsert: {
+            email: sanitizeInput(email.toLowerCase()),
+            firstName: firstName ? sanitizeInput(firstName) : undefined,
+            ipAddress: sanitizeInput(ipAddress),
+            source: 'website',
+            isActive: true,
+          },
+        },
+        { upsert: true, new: true }
+      );
     } catch (dbError) {
       console.error('Newsletter DB error:', dbError);
     }

@@ -1,12 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  eslint: {
+    // ESLint 9 flat config has a serialization issue with Next.js 15 build runner.
+    // Run linting separately via `npm run lint`.
+    ignoreDuringBuilds: true,
+  },
   images: {
     remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'cdn.sanity.io',
-      },
       {
         protocol: 'https',
         hostname: 'images.unsplash.com',
@@ -34,8 +35,8 @@ const nextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://c.clarity.ms",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: https://cdn.sanity.io https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com",
-              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms https://*.neon.tech wss://*.neon.tech",
+              "img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com",
+              "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms",
               "frame-src 'none'",
               "object-src 'none'",
               "base-uri 'self'",
@@ -52,7 +53,7 @@ const nextConfig = {
   async rewrites() {
     return [];
   },
-  serverExternalPackages: ['@neondatabase/serverless', 'drizzle-orm'],
+  serverExternalPackages: ['mongoose'],
 };
 
 export default nextConfig;

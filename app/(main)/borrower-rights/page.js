@@ -109,10 +109,10 @@ export default function BorrowerRightsPage() {
           <Breadcrumb items={breadcrumbs} className="mb-6" />
           <div className="max-w-3xl">
             <span className="section-label mb-4">Consumer Protection</span>
-            <h1 className="mt-4 text-4xl font-bold text-[#0A2540] md:text-5xl">
+            <h1 className="mt-4 text-3xl font-bold text-[#0A2540] sm:text-4xl md:text-5xl">
               Your Borrower Rights in Florida
             </h1>
-            <p className="mt-4 text-lg text-muted-foreground">
+            <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               Florida law provides payday loan borrowers with strong protections. Know your rights
               before you borrow—and know what to do if a lender violates them.
             </p>
