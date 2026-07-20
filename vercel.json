@@ -19,24 +19,6 @@
           "value": "no-store, no-cache, must-revalidate"
         }
       ]
-    },
-    {
-      "source": "/:path*.(jpg|jpeg|gif|png|svg|ico|webp|avif)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/_next/static/:path*",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
     }
   ],
   "rewrites": [],
