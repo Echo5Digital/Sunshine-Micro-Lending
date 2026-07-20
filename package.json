@@ -18,8 +18,7 @@
     "db:seed": "node --env-file=.env drizzle/seed.js",
     "sanity:dev": "sanity dev",
     "sanity:build": "sanity build",
-    "sanity:deploy": "sanity deploy",
-    "postinstall": "node scripts/setup-shadcn.js 2>/dev/null || true"
+    "sanity:deploy": "sanity deploy"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
