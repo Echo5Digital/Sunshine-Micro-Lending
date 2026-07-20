@@ -207,12 +207,23 @@
 
   /* ─── Prose ──────────────────────────────────────── */
   .prose-custom {
-    @apply prose prose-slate max-w-none
-           prose-headings:text-[#0A2540] prose-headings:font-semibold
-           prose-a:text-[#00A6FB] prose-a:no-underline hover:prose-a:underline
-           prose-strong:text-[#0A2540]
-           prose-code:text-[#00A6FB] prose-code:bg-[#00A6FB]/10 prose-code:rounded
-           prose-img:rounded-xl;
+    @apply max-w-none text-base leading-relaxed text-foreground;
+  }
+  .prose-custom h1, .prose-custom h2, .prose-custom h3,
+  .prose-custom h4, .prose-custom h5, .prose-custom h6 {
+    @apply font-semibold text-[#0A2540];
+  }
+  .prose-custom a {
+    @apply text-[#00A6FB] no-underline hover:underline;
+  }
+  .prose-custom strong {
+    @apply font-semibold text-[#0A2540];
+  }
+  .prose-custom code {
+    @apply rounded bg-[#00A6FB]/10 px-1 py-0.5 text-[#00A6FB];
+  }
+  .prose-custom img {
+    @apply rounded-xl;
   }
 
   /* ─── Loading ────────────────────────────────────── */

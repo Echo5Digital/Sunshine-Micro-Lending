@@ -2,7 +2,7 @@ import { Inter } from 'next/font/google';
 import './globals.css';
 import { Analytics } from '@/components/analytics/Analytics';
 import { CookieConsent } from '@/components/analytics/CookieConsent';
-import { generateOrganizationSchema } from '@/lib/seo/schema';
+import { generateOrganizationSchema, generateWebsiteSchema } from '@/lib/seo/schema';
 
 const inter = Inter({
   subsets: ['latin'],
@@ -79,6 +79,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   const orgSchema = generateOrganizationSchema();
+  const websiteSchema = generateWebsiteSchema();
 
   return (
     <html lang="en" className={inter.variable}>
@@ -92,6 +93,10 @@ export default function RootLayout({ children }) {
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(orgSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
       <body className="min-h-screen bg-background font-sans antialiased">

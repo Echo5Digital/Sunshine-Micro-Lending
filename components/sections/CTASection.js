@@ -4,6 +4,7 @@ import { ArrowRight, Shield, Clock } from 'lucide-react';
 export function CTASection({
   heading = 'Ready to Apply?',
   subheading = 'Get started with a fast, transparent loan application. No obligation until you accept.',
+  subLine = null,
   primaryCTA = { label: 'Apply Now', href: '/apply' },
   secondaryCTA = { label: 'Learn More', href: '/how-it-works' },
   variant = 'gradient',
@@ -15,7 +16,7 @@ export function CTASection({
       className={
         isGradient
           ? 'relative overflow-hidden bg-gradient-to-br from-[#0A2540] via-[#0d3060] to-[#00A6FB] py-14 sm:py-20'
-          : 'bg-[#F8FAFC] py-14 sm:py-20'
+          : 'relative bg-[#F8FAFC] py-14 sm:py-20'
       }
     >
       {/* Background pattern */}
@@ -74,8 +75,8 @@ export function CTASection({
           ))}
         </div>
 
-        {/* CTAs */}
-        <div className="flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+        {/* CTA button */}
+        <div className="flex flex-col items-center gap-4">
           <Link
             href={primaryCTA.href}
             className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold shadow-sm transition-all duration-200 hover:shadow-md active:scale-[0.98] sm:w-auto sm:px-8 sm:py-4 sm:text-base ${
@@ -88,7 +89,26 @@ export function CTASection({
             <ArrowRight className="h-4 w-4" />
           </Link>
 
-          {secondaryCTA && (
+          {/* Sub-line — rendered when provided, otherwise fall back to secondaryCTA */}
+          {subLine ? (
+            <p className={`text-sm ${isGradient ? 'text-white/70' : 'text-muted-foreground'}`}>
+              Questions first?{' '}
+              <a
+                href="tel:18005867846"
+                className={`font-semibold underline underline-offset-2 ${isGradient ? 'text-white hover:text-white/90' : 'text-[#00A6FB] hover:text-[#0097e8]'}`}
+              >
+                Call us at +1-800-SUNSHINE
+              </a>
+              {' '}or read{' '}
+              <Link
+                href="/how-it-works"
+                className={`font-semibold underline underline-offset-2 ${isGradient ? 'text-white hover:text-white/90' : 'text-[#00A6FB] hover:text-[#0097e8]'}`}
+              >
+                How It Works
+              </Link>
+              .
+            </p>
+          ) : secondaryCTA && (
             <Link
               href={secondaryCTA.href}
               className={`inline-flex w-full items-center justify-center gap-2 rounded-xl px-6 py-3.5 text-sm font-semibold transition-colors sm:w-auto sm:px-8 sm:py-4 sm:text-base ${

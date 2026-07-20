@@ -3,17 +3,25 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Menu, X, Sun, Phone } from 'lucide-react';
+import {
+  Menu, X, Sun, ArrowRight, Phone, Clock, Shield,
+  Zap, DollarSign, FileText, MessageCircle, User, PenSquare, PhoneCall,
+} from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/lib/utils';
 
 const NAV_LINKS = [
-  { href: '/how-it-works', label: 'How It Works' },
-  { href: '/loan-options', label: 'Loan Options' },
-  { href: '/rates-fees', label: 'Rates & Fees' },
-  { href: '/faq', label: 'FAQ' },
-  { href: '/about', label: 'About' },
-  { href: '/blog', label: 'Blog' },
+  { href: '/how-it-works', label: 'How It Works', icon: Zap },
+  { href: '/loan-options',  label: 'Loan Options',  icon: DollarSign },
+  { href: '/rates-fees',    label: 'Rates & Fees',  icon: FileText },
+  { href: '/faq',           label: 'FAQ',            icon: MessageCircle },
+  { href: '/about',         label: 'About',          icon: User },
+  { href: '/blog',          label: 'Blog',           icon: PenSquare },
+  { href: '/contact',       label: 'Contact',        icon: PhoneCall },
 ];
+
+// Top bar height: h-10 = 40px
+const TOP_BAR_H = 40;
 
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,168 +34,250 @@ export function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Close mobile menu on route change
-  useEffect(() => {
-    setIsOpen(false);
-  }, [pathname]);
+  useEffect(() => { setIsOpen(false); }, [pathname]);
 
-  // Prevent body scroll when menu is open
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
-    }
-    return () => {
-      document.body.style.overflow = '';
-    };
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
   }, [isOpen]);
 
   return (
-    <header
-      className={cn(
-        'sticky top-0 z-50 w-full transition-all duration-300',
-        isScrolled
-          ? 'border-b border-border/60 bg-white/98 shadow-sm backdrop-blur-md'
-          : 'border-b border-transparent bg-white'
-      )}
-    >
-      {/* Top Bar */}
-      <div className="hidden border-b border-border/40 bg-[#0A2540] py-1.5 md:block">
-        <div className="container mx-auto flex items-center justify-between px-4 text-xs text-white/80">
-          <span>Florida Licensed Payday Lender | OFR License</span>
-          <div className="flex items-center gap-4">
-            <a
-              href={`tel:${process.env.NEXT_PUBLIC_COMPANY_PHONE}`}
-              className="flex items-center gap-1.5 transition-colors hover:text-white"
-            >
-              <Phone className="h-3 w-3" />
-              {process.env.NEXT_PUBLIC_COMPANY_PHONE || '1-800-SUNSHINE'}
+    <>
+      {/* ══════════════════════════════════════════
+          TOP BAR — slides away on scroll
+      ══════════════════════════════════════════ */}
+      <motion.div
+        className="fixed top-0 z-50 hidden w-full px-6 md:block"
+        animate={{ y: isScrolled ? -48 : 0 }}
+        transition={{ type: 'spring', stiffness: 300, damping: 32 }}
+      >
+        <div
+          className="mx-auto flex h-10 max-w-7xl items-center justify-between rounded-b-2xl px-6"
+          style={{
+            background: 'linear-gradient(135deg, #0A2540 0%, #031B4E 100%)',
+            boxShadow: '0 4px 16px rgba(3,27,78,0.35)',
+          }}
+        >
+          {/* Left */}
+          <div className="flex items-center gap-3 text-xs text-white/80">
+            <Shield className="h-3.5 w-3.5 text-[#00A6FB]" />
+            <span className="font-semibold text-white">Florida Licensed Payday Lender</span>
+            <span className="h-3 w-px bg-white/20" />
+            <span className="text-white/60">OFR License</span>
+          </div>
+          {/* Right */}
+          <div className="flex items-center gap-3 text-xs text-white/80">
+            <a href="tel:18005867846" className="flex items-center gap-2 transition-colors hover:text-white">
+              <Phone className="h-3.5 w-3.5 text-[#00A6FB]" />
+              <span className="font-semibold text-white">+1-800-SUNSHINE</span>
             </a>
-            <span>|</span>
+            <span className="h-3 w-px bg-white/20" />
+            <Clock className="h-3.5 w-3.5 text-white/50" />
             <span>Mon–Fri 9AM–5PM EST</span>
           </div>
         </div>
-      </div>
+      </motion.div>
 
-      {/* Main Nav */}
-      <div className="container mx-auto px-4">
-        <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <Link
-            href="/"
-            className="flex items-center gap-2.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB] focus-visible:ring-offset-2 rounded-lg"
-            aria-label="Sunshine Micro Lending - Home"
+      {/* ══════════════════════════════════════════
+          MAIN BAR — always fixed, never moves
+      ══════════════════════════════════════════ */}
+      <div className="fixed z-40 w-full px-4 md:px-6" style={{ top: 0 }}>
+        {/* Sits below top bar on desktop, flush on mobile */}
+        <div className="pt-0 md:pt-[calc(2.5rem+8px)]">
+          <motion.div
+            className="mx-auto max-w-7xl overflow-hidden bg-white"
+            style={{ borderRadius: 36 }}
+            animate={{
+              boxShadow: isScrolled
+                ? '0 12px 48px rgba(0,0,0,0.16), 0 4px 16px rgba(0,0,0,0.08)'
+                : '0 8px 40px rgba(0,0,0,0.12), 0 2px 12px rgba(0,0,0,0.06)',
+            }}
+            transition={{ duration: 0.3 }}
           >
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#0A2540] to-[#00A6FB] shadow-sm">
-              <Sun className="h-5 w-5 text-white" strokeWidth={2.5} />
-            </div>
-            <div className="leading-tight">
-              <div className="text-sm font-bold text-[#0A2540]">Sunshine</div>
-              <div className="text-xs font-medium text-[#00A6FB]">Micro Lending</div>
-            </div>
-          </Link>
+            <div className="flex h-[6.875rem] items-stretch">
 
-          {/* Desktop Navigation */}
-          <nav className="hidden items-center gap-1 lg:flex" aria-label="Main navigation">
-            {NAV_LINKS.map((link) => (
+              {/* ── LOGO SECTION (300px) ── */}
               <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  'rounded-lg px-3 py-2 text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB]',
-                  pathname === link.href
-                    ? 'bg-[#00A6FB]/10 text-[#00A6FB]'
-                    : 'text-[#1F2937] hover:bg-muted hover:text-[#0A2540]'
-                )}
+                href="/"
+                aria-label="Sunshine Micro Lending - Home"
+                className="relative flex shrink-0 items-center gap-4 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00A6FB]"
+                style={{ width: 300 }}
               >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          {/* Desktop CTA */}
-          <div className="hidden items-center gap-3 lg:flex">
-            <Link
-              href="/contact"
-              className="rounded-lg px-4 py-2 text-sm font-medium text-[#0A2540] transition-colors hover:bg-muted"
-            >
-              Contact
-            </Link>
-            <Link
-              href="/apply"
-              className="btn-secondary text-sm"
-            >
-              Apply Now
-            </Link>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="flex items-center justify-center rounded-lg p-2 text-[#0A2540] transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB] lg:hidden"
-            onClick={() => setIsOpen(!isOpen)}
-            aria-label={isOpen ? 'Close menu' : 'Open menu'}
-            aria-expanded={isOpen}
-            aria-controls="mobile-menu"
-          >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
-        </div>
-      </div>
-
-      {/* Mobile Menu */}
-      {isOpen && (
-        <div
-          id="mobile-menu"
-          className="fixed inset-0 top-[calc(4rem+2.5rem)] z-40 bg-white md:top-16 lg:hidden"
-          aria-label="Mobile navigation"
-        >
-          <div className="container mx-auto flex h-full flex-col px-4 py-6">
-            <nav className="flex flex-col gap-1">
-              {NAV_LINKS.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    'rounded-xl px-4 py-3.5 text-base font-medium transition-colors',
-                    pathname === link.href
-                      ? 'bg-[#00A6FB]/10 text-[#00A6FB]'
-                      : 'text-[#1F2937] hover:bg-muted'
-                  )}
+                <div className="absolute inset-0 bg-gradient-to-br from-[#EFF6FF] via-[#DBEAFE] to-[#EFF6FF]" />
+                <svg
+                  className="absolute right-0 top-0 h-full"
+                  viewBox="0 0 120 110"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
                 >
-                  {link.label}
+                  <path d="M120,0 L120,110 L30,110 Q0,55 30,0 Z" fill="url(#logoGrad)" />
+                  <defs>
+                    <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00A6FB" />
+                      <stop offset="100%" stopColor="#2563EB" />
+                    </linearGradient>
+                  </defs>
+                </svg>
+                <div className="relative z-10 flex items-center gap-3 pl-6">
+                  <div
+                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full shadow-lg"
+                    style={{ background: 'linear-gradient(135deg, #1a56db 0%, #00A6FB 100%)' }}
+                  >
+                    <Sun className="h-7 w-7 text-[#FCD34D]" strokeWidth={2} />
+                  </div>
+                  <div className="leading-tight">
+                    <div className="text-[1.35rem] font-extrabold tracking-tight text-[#0A2540]">Sunshine</div>
+                    <div className="text-sm font-bold text-[#1a56db]">Micro Lending</div>
+                  </div>
+                </div>
+              </Link>
+
+              {/* ── CENTER NAV ── */}
+              <nav className="hidden flex-1 items-center justify-center gap-0 lg:flex" aria-label="Main navigation">
+                {NAV_LINKS.map((link) => {
+                  const Icon = link.icon;
+                  const active = pathname === link.href;
+                  return (
+                    <Link
+                      key={link.href}
+                      href={link.href}
+                      className={cn(
+                        'group relative flex flex-col items-center justify-center gap-1.5 px-5 py-3 transition-all duration-300 focus-visible:outline-none xl:px-6',
+                        active ? 'text-[#00A6FB]' : 'text-[#0A2540] hover:text-[#00A6FB]'
+                      )}
+                    >
+                      <Icon
+                        className={cn(
+                          'h-6 w-6 transition-colors duration-300',
+                          active ? 'text-[#00A6FB]' : 'text-[#0A2540] group-hover:text-[#00A6FB]'
+                        )}
+                        strokeWidth={1.75}
+                      />
+                      <span className="text-[13px] font-medium leading-none whitespace-nowrap">
+                        {link.label}
+                      </span>
+                      {active && (
+                        <motion.span
+                          layoutId="nav-active"
+                          className="absolute bottom-1 h-1 w-1 rounded-full bg-[#00A6FB]"
+                          transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                        />
+                      )}
+                    </Link>
+                  );
+                })}
+              </nav>
+
+              {/* ── RIGHT SECTION ── */}
+              <div className="hidden shrink-0 items-center gap-3 pr-5 lg:flex">
+                <Link
+                  href="/apply"
+                  className="inline-flex items-center gap-2.5 font-bold text-white transition-all duration-200 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(0,166,251,0.5)] active:scale-[0.97]"
+                  style={{
+                    height: 56,
+                    padding: '0 32px',
+                    background: '#00A6FB',
+                    borderRadius: 18,
+                    fontSize: 15,
+                    boxShadow: '0 4px 16px rgba(0,166,251,0.35)',
+                  }}
+                >
+                  Apply Now
+                  <ArrowRight className="h-4 w-4" />
                 </Link>
-              ))}
-              <Link
-                href="/contact"
-                className={cn(
-                  'rounded-xl px-4 py-3.5 text-base font-medium transition-colors',
-                  pathname === '/contact'
-                    ? 'bg-[#00A6FB]/10 text-[#00A6FB]'
-                    : 'text-[#1F2937] hover:bg-muted'
-                )}
-              >
-                Contact
-              </Link>
-            </nav>
-            <div className="mt-auto flex flex-col gap-3 pb-6">
-              <Link
-                href="/apply"
-                className="w-full rounded-xl bg-[#00A6FB] px-6 py-4 text-center text-base font-semibold text-white shadow-sm transition-colors hover:bg-[#0097e8]"
-              >
-                Apply Now
-              </Link>
-              <a
-                href={`tel:${process.env.NEXT_PUBLIC_COMPANY_PHONE}`}
-                className="flex w-full items-center justify-center gap-2 rounded-xl border border-border px-6 py-4 text-base font-medium text-[#0A2540] transition-colors hover:bg-muted"
-              >
-                <Phone className="h-4 w-4" />
-                Call Us
-              </a>
+              </div>
+
+              {/* ── MOBILE HAMBURGER ── */}
+              <div className="ml-auto flex items-center px-5 lg:hidden">
+                <button
+                  className="flex items-center justify-center rounded-2xl p-2.5 text-[#0A2540] transition-colors hover:bg-[#EFF6FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB]"
+                  onClick={() => setIsOpen(!isOpen)}
+                  aria-label={isOpen ? 'Close menu' : 'Open menu'}
+                  aria-expanded={isOpen}
+                  aria-controls="mobile-menu"
+                >
+                  {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+                </button>
+              </div>
+
             </div>
-          </div>
+          </motion.div>
         </div>
-      )}
-    </header>
+      </div>
+
+      {/* ══════════════════════════════════════════
+          MOBILE DRAWER
+      ══════════════════════════════════════════ */}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div
+              key="backdrop"
+              className="fixed inset-0 z-30 bg-black/30 backdrop-blur-sm lg:hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              onClick={() => setIsOpen(false)}
+            />
+            <motion.div
+              key="drawer"
+              id="mobile-menu"
+              className="fixed inset-x-4 top-[6.875rem] z-40 overflow-hidden rounded-3xl bg-white shadow-[0_24px_64px_rgba(0,0,0,0.18)] lg:hidden"
+              initial={{ opacity: 0, y: -12, scale: 0.97 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -12, scale: 0.97 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+              aria-label="Mobile navigation"
+            >
+              <div className="flex flex-col p-4">
+                <nav className="flex flex-col gap-1">
+                  {NAV_LINKS.map((link, i) => {
+                    const Icon = link.icon;
+                    const active = pathname === link.href;
+                    return (
+                      <motion.div
+                        key={link.href}
+                        initial={{ opacity: 0, x: -8 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: i * 0.04, duration: 0.2 }}
+                      >
+                        <Link
+                          href={link.href}
+                          className={cn(
+                            'flex items-center gap-3 rounded-2xl px-4 py-3.5 text-[15px] font-medium transition-all duration-200',
+                            active
+                              ? 'bg-[#EFF6FF] text-[#00A6FB]'
+                              : 'text-[#0A2540] hover:bg-[#F8FAFF] hover:text-[#00A6FB]'
+                          )}
+                        >
+                          <Icon
+                            className={cn('h-5 w-5 shrink-0', active ? 'text-[#00A6FB]' : 'text-[#64748B]')}
+                            strokeWidth={1.75}
+                          />
+                          {link.label}
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </nav>
+                <div className="my-3 h-px bg-[#E8EDF5]" />
+                <Link
+                  href="/apply"
+                  className="inline-flex w-full items-center justify-center gap-2.5 rounded-2xl bg-[#00A6FB] py-4 text-[15px] font-bold text-white shadow-[0_4px_16px_rgba(0,166,251,0.35)] transition-all hover:-translate-y-0.5 hover:bg-[#0097e8] hover:shadow-[0_8px_24px_rgba(0,166,251,0.45)] active:scale-[0.98]"
+                >
+                  Apply Now
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+                <div className="mt-3 flex items-center justify-center gap-3 rounded-2xl bg-[#F8FAFF] px-4 py-3 text-xs text-[#64748B]">
+                  <Shield className="h-3.5 w-3.5 text-[#00A6FB]" />
+                  <span>Florida Licensed Lender · OFR Regulated</span>
+                </div>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
   );
 }
