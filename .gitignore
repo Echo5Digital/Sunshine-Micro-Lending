@@ -1,0 +1,70 @@
+# ─── Dependencies ───────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ─── Environment ────────────────────────────────────
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env*.local
+
+# ─── Next.js ────────────────────────────────────────
+.next/
+out/
+build/
+dist/
+
+# ─── Vercel ─────────────────────────────────────────
+.vercel/
+
+# ─── Sanity ─────────────────────────────────────────
+.sanity/
+sanity/dist/
+sanity/.cache/
+
+# ─── Production Build ────────────────────────────────
+/build
+
+# ─── Debug ──────────────────────────────────────────
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# ─── TypeScript ─────────────────────────────────────
+*.tsbuildinfo
+next-env.d.ts
+
+# ─── Testing ────────────────────────────────────────
+coverage/
+.nyc_output/
+
+# ─── Misc ───────────────────────────────────────────
+.DS_Store
+*.pem
+Thumbs.db
+*.log
+logs/
+
+# ─── Drizzle ────────────────────────────────────────
+drizzle/meta/
+
+# ─── Editor ─────────────────────────────────────────
+.idea/
+*.swp
+*.swo
+.vscode/settings.json
+
+# ─── OS ─────────────────────────────────────────────
+.DS_Store
+ehthumbs.db
+Desktop.ini
+
+# ─── Cache ──────────────────────────────────────────
+.cache/
+.parcel-cache/
+.eslintcache
+.prettier-cache

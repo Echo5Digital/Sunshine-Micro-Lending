@@ -1,0 +1,19 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /studio/
+Disallow: /_next/
+Disallow: /admin/
+
+# Restrict AI scrapers from sensitive pages
+User-agent: GPTBot
+Disallow: /apply
+Disallow: /api/
+
+User-agent: ChatGPT-User
+Disallow: /apply
+
+User-agent: CCBot
+Disallow: /apply
+
+Sitemap: https://sunshinemicrolending.com/sitemap.xml
