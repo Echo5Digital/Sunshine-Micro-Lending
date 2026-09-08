@@ -178,7 +178,7 @@ export default function FAQPage() {
       </section>
 
       {/* Category Navigation */}
-      <section className="border-b border-border bg-white py-4 sticky top-[4rem] z-30">
+      <section className="sticky top-[4.5rem] z-30 border-b border-border bg-white py-4 md:top-[10.375rem]">
         <div className="container mx-auto px-4">
           <div className="flex flex-wrap gap-2">
             {Object.entries(FAQ_CATEGORIES).map(([key, label]) => (

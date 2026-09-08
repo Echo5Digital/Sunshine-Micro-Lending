@@ -1,9 +1,10 @@
 'use client';
 
+'use client';
+
 import Link from 'next/link';
 import { useEffect } from 'react';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { PageLayout } from '@/components/layout/PageLayout';
 
 export default function ErrorPage({ error, reset }) {
   useEffect(() => {
@@ -11,9 +12,8 @@ export default function ErrorPage({ error, reset }) {
   }, [error]);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex flex-1 items-center justify-center bg-[#F8FAFC] py-20">
+    <PageLayout>
+      <div className="flex min-h-[calc(100vh-4.5rem)] items-center justify-center bg-[#F8FAFC] py-20 md:min-h-[calc(100vh-10.375rem)]">
         <div className="container mx-auto px-4 text-center">
           <h1 className="mb-4 text-3xl font-bold text-[#0A2540]">Something went wrong</h1>
           <p className="mx-auto mb-8 max-w-md text-muted-foreground">
@@ -34,8 +34,7 @@ export default function ErrorPage({ error, reset }) {
             </Link>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </PageLayout>
   );
 }

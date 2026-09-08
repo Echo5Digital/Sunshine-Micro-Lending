@@ -2,6 +2,7 @@
 // to the new manual-review workflow enum. Safe to re-run.
 //
 // Usage: node --env-file=.env.local scripts/migrate-application-status.mjs
+/* eslint-disable no-console -- CLI script: progress output is the intended purpose */
 
 import mongoose from 'mongoose';
 

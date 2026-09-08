@@ -54,7 +54,7 @@ export function StaffManager({ initialStaff }) {
         </CardHeader>
         <CardContent>
           <div className="overflow-x-auto rounded-lg border border-border">
-            <table className="w-full text-left text-sm">
+            <table className="w-full min-w-[420px] text-left text-sm">
               <thead className="border-b border-border bg-[#F8FAFC] text-xs uppercase tracking-wide text-muted-foreground">
                 <tr>
                   <th className="px-4 py-2.5">Name</th>
@@ -65,9 +65,9 @@ export function StaffManager({ initialStaff }) {
               <tbody className="divide-y divide-border">
                 {staff.map((member) => (
                   <tr key={member.email}>
-                    <td className="px-4 py-2.5 font-medium text-[#0A2540]">{member.name}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{member.email}</td>
-                    <td className="px-4 py-2.5 text-muted-foreground">{formatDateShort(member.createdAt)}</td>
+                    <td className="max-w-[140px] truncate px-4 py-2.5 font-medium text-[#0A2540]">{member.name}</td>
+                    <td className="max-w-[180px] truncate px-4 py-2.5 text-muted-foreground">{member.email}</td>
+                    <td className="whitespace-nowrap px-4 py-2.5 text-muted-foreground">{formatDateShort(member.createdAt)}</td>
                   </tr>
                 ))}
               </tbody>

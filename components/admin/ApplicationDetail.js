@@ -37,7 +37,7 @@ export function ApplicationDetail({ application, auditLog }) {
   return (
     <div>
       <Link
-        href="/admin"
+        href="/admin/applications"
         className="mb-4 inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-[#0A2540]"
       >
         <ArrowLeft className="h-4 w-4" />

@@ -192,7 +192,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }) {
   const post = BLOG_POSTS[params.slug];
-  if (!post) return { title: 'Post Not Found' };
+  if (!post) {
+    return { title: 'Post Not Found' };
+  }
   return generateBlogPostMetadata({
     title: post.title,
     excerpt: post.excerpt,
@@ -247,7 +249,9 @@ function ContentRenderer({ content }) {
 
 export default function BlogPostPage({ params }) {
   const post = BLOG_POSTS[params.slug];
-  if (!post) notFound();
+  if (!post) {
+    notFound();
+  }
 
   const articleSchema = generateArticleSchema({
     title: post.title,

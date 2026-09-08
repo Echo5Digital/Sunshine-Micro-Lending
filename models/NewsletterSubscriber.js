@@ -12,7 +12,6 @@ const NewsletterSubscriberSchema = new mongoose.Schema(
   { timestamps: true }
 );
 
-NewsletterSubscriberSchema.index({ email: 1 }, { unique: true });
 NewsletterSubscriberSchema.index({ isActive: 1 });
 
 export const NewsletterSubscriber =

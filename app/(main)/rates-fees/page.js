@@ -171,28 +171,28 @@ export default function RatesFeesPage() {
             Complete Fee Table: All Loan Amounts
           </h2>
           <div className="overflow-x-auto rounded-xl border border-border shadow-card">
-            <table className="w-full text-sm">
+            <table className="w-full min-w-[760px] text-sm">
               <thead>
                 <tr className="bg-[#0A2540] text-white">
-                  <th className="px-5 py-4 text-left font-semibold">Loan Amount</th>
-                  <th className="px-5 py-4 text-left font-semibold">10% Fee</th>
-                  <th className="px-5 py-4 text-left font-semibold">Verification Fee</th>
-                  <th className="px-5 py-4 text-left font-semibold">Total Fee</th>
-                  <th className="px-5 py-4 text-left font-semibold">Total Repayment</th>
-                  <th className="px-5 py-4 text-left font-semibold">APR (14 days)</th>
-                  <th className="px-5 py-4 text-left font-semibold">APR (30 days)</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">Loan Amount</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">10% Fee</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">Verification Fee</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">Total Fee</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">Total Repayment</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">APR (14 days)</th>
+                  <th className="whitespace-nowrap px-5 py-4 text-left font-semibold">APR (30 days)</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border bg-white">
                 {FEE_EXAMPLES.map((row, index) => (
                   <tr key={row.amount} className={index % 2 === 0 ? 'bg-white' : 'bg-[#F8FAFC]'}>
-                    <td className="px-5 py-3.5 font-semibold text-[#0A2540]">{formatCurrency(row.amount)}</td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{formatCurrency(row.percentFee)}</td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{formatCurrency(row.verificationFee)}</td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{formatCurrency(row.totalFee)}</td>
-                    <td className="px-5 py-3.5 font-bold text-[#0A2540]">{formatCurrency(row.totalRepayment)}</td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{row.apr14}%</td>
-                    <td className="px-5 py-3.5 text-muted-foreground">{row.apr30}%</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 font-semibold text-[#0A2540]">{formatCurrency(row.amount)}</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 text-muted-foreground">{formatCurrency(row.percentFee)}</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 text-muted-foreground">{formatCurrency(row.verificationFee)}</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 text-muted-foreground">{formatCurrency(row.totalFee)}</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 font-bold text-[#0A2540]">{formatCurrency(row.totalRepayment)}</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 text-muted-foreground">{row.apr14}%</td>
+                    <td className="whitespace-nowrap px-5 py-3.5 text-muted-foreground">{row.apr30}%</td>
                   </tr>
                 ))}
               </tbody>

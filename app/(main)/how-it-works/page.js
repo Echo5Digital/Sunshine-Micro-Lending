@@ -143,10 +143,10 @@ export default function HowItWorksPage() {
 
                 {/* Visual */}
                 <div className={`flex justify-center ${index % 2 !== 0 ? 'lg:col-start-1' : ''}`}>
-                  <div className="flex h-56 w-56 flex-col items-center justify-center rounded-3xl bg-gradient-to-br from-[#0A2540] to-[#00A6FB] shadow-premium">
-                    <span className="mb-3 text-6xl font-bold text-white/20">{step.number}</span>
-                    <step.icon className="h-14 w-14 text-white" />
-                    <span className="mt-3 text-sm font-semibold text-white/80">{step.title.split('?')[0].split('Do')[1]?.trim() || step.title}</span>
+                  <div className="flex h-40 w-40 flex-col items-center justify-center rounded-3xl bg-gradient-to-br from-[#0A2540] to-[#00A6FB] shadow-premium sm:h-48 sm:w-48 md:h-56 md:w-56">
+                    <span className="mb-2 text-4xl font-bold text-white/20 sm:mb-3 sm:text-5xl md:text-6xl">{step.number}</span>
+                    <step.icon className="h-10 w-10 text-white sm:h-12 sm:w-12 md:h-14 md:w-14" />
+                    <span className="mt-2 text-xs font-semibold text-white/80 sm:mt-3 sm:text-sm">{step.title.split('?')[0].split('Do')[1]?.trim() || step.title}</span>
                   </div>
                 </div>
               </div>

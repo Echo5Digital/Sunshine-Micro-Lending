@@ -84,7 +84,7 @@ export default function AboutPage() {
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {[
                 { value: '$500', label: 'Maximum Loan', description: 'Florida legal limit' },
                 { value: '10%', label: 'Simple Fee', description: 'No hidden charges' },

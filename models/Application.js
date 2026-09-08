@@ -71,7 +71,6 @@ const ApplicationSchema = new mongoose.Schema(
 ApplicationSchema.index({ email: 1 });
 ApplicationSchema.index({ status: 1 });
 ApplicationSchema.index({ createdAt: -1 });
-ApplicationSchema.index({ referenceNumber: 1 }, { unique: true, sparse: true });
 ApplicationSchema.index({ assignedTo: 1 });
 
 export const Application =

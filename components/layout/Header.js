@@ -20,9 +20,6 @@ const NAV_LINKS = [
   { href: '/contact',       label: 'Contact',        icon: PhoneCall },
 ];
 
-// Top bar height: h-10 = 40px
-const TOP_BAR_H = 40;
-
 export function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -87,18 +84,18 @@ export function Header() {
             }}
             transition={{ duration: 0.3 }}
           >
-            <div className="flex h-[6.875rem] items-stretch">
+            <div className="flex h-[4.5rem] items-stretch md:h-[6.875rem]">
 
-              {/* ── LOGO SECTION (300px) ── */}
+              {/* ── LOGO SECTION ── */}
               <Link
                 href="/"
                 aria-label="Sunshine Micro Lending - Home"
-                className="relative flex shrink-0 items-center gap-4 overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00A6FB]"
-                style={{ width: 300 }}
+                className="relative flex w-auto shrink-0 items-center overflow-hidden focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00A6FB] md:w-[18.75rem]"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#EFF6FF] via-[#DBEAFE] to-[#EFF6FF]" />
+                {/* Desktop: full decorative background + wide swoosh */}
+                <div className="absolute inset-0 hidden bg-gradient-to-br from-[#EFF6FF] via-[#DBEAFE] to-[#EFF6FF] md:block" />
                 <svg
-                  className="absolute right-0 top-0 h-full"
+                  className="absolute right-0 top-0 hidden h-full md:block"
                   viewBox="0 0 120 110"
                   preserveAspectRatio="none"
                   aria-hidden="true"
@@ -111,18 +108,34 @@ export function Header() {
                     </linearGradient>
                   </defs>
                 </svg>
-                <div className="relative z-10 flex items-center gap-3 pl-6">
+
+                {/* Mobile: content sizes naturally, swoosh is a fixed-width strip appended after the text */}
+                <div className="relative z-10 flex items-center gap-2 pl-3 md:gap-3 md:pl-6">
                   <div
-                    className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full shadow-lg"
+                    className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full shadow-lg md:h-14 md:w-14"
                     style={{ background: 'linear-gradient(135deg, #1a56db 0%, #00A6FB 100%)' }}
                   >
-                    <Sun className="h-7 w-7 text-[#FCD34D]" strokeWidth={2} />
+                    <Sun className="h-5 w-5 text-[#FCD34D] md:h-7 md:w-7" strokeWidth={2} />
                   </div>
-                  <div className="leading-tight">
-                    <div className="text-[1.35rem] font-extrabold tracking-tight text-[#0A2540]">Sunshine</div>
-                    <div className="text-sm font-bold text-[#1a56db]">Micro Lending</div>
+                  <div className="whitespace-nowrap leading-tight">
+                    <div className="text-sm font-extrabold tracking-tight text-[#0A2540] md:text-[1.35rem]">Sunshine</div>
+                    <div className="text-xs font-bold text-[#1a56db] md:text-sm">Micro Lending</div>
                   </div>
                 </div>
+                <svg
+                  className="ml-2 h-full w-8 shrink-0 md:hidden"
+                  viewBox="0 0 32 110"
+                  preserveAspectRatio="none"
+                  aria-hidden="true"
+                >
+                  <path d="M32,0 L32,110 L14,110 Q0,55 14,0 Z" fill="url(#logoGradMobile)" />
+                  <defs>
+                    <linearGradient id="logoGradMobile" x1="0%" y1="0%" x2="100%" y2="100%">
+                      <stop offset="0%" stopColor="#00A6FB" />
+                      <stop offset="100%" stopColor="#2563EB" />
+                    </linearGradient>
+                  </defs>
+                </svg>
               </Link>
 
               {/* ── CENTER NAV ── */}
@@ -181,9 +194,9 @@ export function Header() {
               </div>
 
               {/* ── MOBILE HAMBURGER ── */}
-              <div className="ml-auto flex items-center px-5 lg:hidden">
+              <div className="ml-auto flex items-center px-3 lg:hidden lg:px-5">
                 <button
-                  className="flex items-center justify-center rounded-2xl p-2.5 text-[#0A2540] transition-colors hover:bg-[#EFF6FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB]"
+                  className="flex h-11 w-11 items-center justify-center rounded-2xl text-[#0A2540] transition-colors hover:bg-[#EFF6FF] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#00A6FB]"
                   onClick={() => setIsOpen(!isOpen)}
                   aria-label={isOpen ? 'Close menu' : 'Open menu'}
                   aria-expanded={isOpen}
@@ -216,7 +229,7 @@ export function Header() {
             <motion.div
               key="drawer"
               id="mobile-menu"
-              className="fixed inset-x-4 top-[6.875rem] z-40 overflow-hidden rounded-3xl bg-white shadow-[0_24px_64px_rgba(0,0,0,0.18)] lg:hidden"
+              className="fixed inset-x-4 top-[4.5rem] z-40 max-h-[calc(100vh-5.5rem)] overflow-y-auto rounded-3xl bg-white shadow-[0_24px_64px_rgba(0,0,0,0.18)] lg:hidden"
               initial={{ opacity: 0, y: -12, scale: 0.97 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -12, scale: 0.97 }}

@@ -3,6 +3,7 @@
 // itself (Admin > Add Staff) once logged in as this account.
 //
 // Usage: node --env-file=.env.local scripts/seed-admin-users.mjs
+/* eslint-disable no-console -- CLI script: progress output is the intended purpose */
 
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';

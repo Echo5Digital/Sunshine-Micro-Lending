@@ -42,6 +42,8 @@ export function ApplicationForm() {
   const [referenceNumber, setReferenceNumber] = useState('');
   const [selectedAmount, setSelectedAmount] = useState(300);
   const [selectedLoanType, setSelectedLoanType] = useState('single_payment');
+  const [isCustomAmount, setIsCustomAmount] = useState(false);
+  const [customAmountInput, setCustomAmountInput] = useState('');
 
   const [uploadStatus, setUploadStatus] = useState('idle'); // idle | uploading | done | error
   const [uploadError, setUploadError] = useState('');
@@ -68,6 +70,50 @@ export function ApplicationForm() {
   const loanAmount = watch('loanAmount') || selectedAmount;
   const loanType = watch('loanType') || selectedLoanType;
   const calc = calculateLoanFee(loanAmount);
+
+  function handleSelectPresetAmount(amount) {
+    setIsCustomAmount(false);
+    setCustomAmountInput('');
+    setSelectedAmount(amount);
+    setValue('loanAmount', amount, { shouldValidate: true });
+  }
+
+  function handleSelectCustomAmount() {
+    setIsCustomAmount(true);
+    setCustomAmountInput(String(loanAmount));
+  }
+
+  function handleCustomAmountChange(rawValue) {
+    setCustomAmountInput(rawValue);
+
+    if (rawValue === '') {
+      setValue('loanAmount', undefined, { shouldValidate: true });
+      return;
+    }
+
+    const parsed = Number(rawValue);
+    if (Number.isNaN(parsed)) {
+      return;
+    }
+
+    const clamped = Math.min(500, Math.max(100, parsed));
+    setSelectedAmount(clamped);
+    setValue('loanAmount', parsed, { shouldValidate: true });
+  }
+
+  function handleCustomAmountBlur() {
+    if (customAmountInput === '') {
+      return;
+    }
+    const parsed = Number(customAmountInput);
+    if (Number.isNaN(parsed)) {
+      return;
+    }
+    const clamped = Math.min(500, Math.max(100, Math.round(parsed)));
+    setCustomAmountInput(String(clamped));
+    setSelectedAmount(clamped);
+    setValue('loanAmount', clamped, { shouldValidate: true });
+  }
 
   async function handleFileChange(e) {
     const file = e.target.files?.[0];
@@ -245,12 +291,9 @@ export function ApplicationForm() {
               <button
                 key={amount}
                 type="button"
-                onClick={() => {
-                  setSelectedAmount(amount);
-                  setValue('loanAmount', amount);
-                }}
-                className={`rounded-lg border px-3 py-2.5 text-sm font-medium transition-all ${
-                  loanAmount === amount
+                onClick={() => handleSelectPresetAmount(amount)}
+                className={`min-h-[44px] rounded-lg border px-3 py-2.5 text-sm font-medium transition-all ${
+                  !isCustomAmount && loanAmount === amount
                     ? 'border-[#00A6FB] bg-[#00A6FB] text-white'
                     : 'border-border bg-white text-foreground hover:border-[#00A6FB]/50'
                 }`}
@@ -258,7 +301,44 @@ export function ApplicationForm() {
                 ${amount}
               </button>
             ))}
+            <button
+              type="button"
+              onClick={handleSelectCustomAmount}
+              className={`min-h-[44px] rounded-lg border px-3 py-2.5 text-sm font-medium transition-all ${
+                isCustomAmount
+                  ? 'border-[#00A6FB] bg-[#00A6FB] text-white'
+                  : 'border-border bg-white text-foreground hover:border-[#00A6FB]/50'
+              }`}
+            >
+              Custom
+            </button>
           </div>
+
+          {isCustomAmount && (
+            <div className="mt-3">
+              <Label htmlFor="customLoanAmount" className="sr-only">Custom loan amount</Label>
+              <div className="relative">
+                <span className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3.5 text-sm text-muted-foreground">
+                  $
+                </span>
+                <Input
+                  id="customLoanAmount"
+                  type="number"
+                  inputMode="decimal"
+                  min={100}
+                  max={500}
+                  step={1}
+                  placeholder="Enter amount between $100–$500"
+                  className="pl-7"
+                  value={customAmountInput}
+                  onChange={(e) => handleCustomAmountChange(e.target.value)}
+                  onBlur={handleCustomAmountBlur}
+                />
+              </div>
+              <p className="mt-1 text-xs text-muted-foreground">Enter any amount between $100 and $500.</p>
+            </div>
+          )}
+
           {errors.loanAmount && (
             <p className="form-error">{errors.loanAmount.message}</p>
           )}

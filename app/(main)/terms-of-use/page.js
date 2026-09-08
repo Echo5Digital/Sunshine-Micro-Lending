@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Breadcrumb } from '@/components/layout/Breadcrumb';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 

@@ -235,7 +235,7 @@ export default function LoanOptionsPage() {
             </h2>
             <p className="mt-3 text-muted-foreground">All applicants must meet the following Florida requirements.</p>
           </div>
-          <div className="mx-auto grid max-w-4xl grid-cols-2 gap-4 md:grid-cols-3">
+          <div className="mx-auto grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
             {ELIGIBILITY.map((req) => (
               <div key={req.label} className="flex items-start gap-3 rounded-xl border border-border bg-white p-4 shadow-card">
                 <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#00A6FB]/10">

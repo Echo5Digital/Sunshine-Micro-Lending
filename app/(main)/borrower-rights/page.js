@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { Shield, Clock, Ban, Database, AlertCircle, CheckCircle, Phone, ExternalLink } from 'lucide-react';
 import { Breadcrumb } from '@/components/layout/Breadcrumb';
 import { generatePageMetadata } from '@/lib/seo/metadata';
@@ -128,7 +127,7 @@ export default function BorrowerRightsPage() {
             the company&apos;s attorney. Do not rely on this page as final legal terms.
           </div>
           <div className="space-y-12">
-            {RIGHTS.map((right, index) => (
+            {RIGHTS.map((right) => (
               <div
                 key={right.title}
                 className="grid grid-cols-1 gap-8 rounded-2xl border border-border p-8 md:grid-cols-3"

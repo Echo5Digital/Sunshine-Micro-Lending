@@ -1,6 +1,5 @@
 import Link from 'next/link';
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+import { PageLayout } from '@/components/layout/PageLayout';
 import { Home, ArrowRight } from 'lucide-react';
 
 export const metadata = {
@@ -10,9 +9,8 @@ export const metadata = {
 
 export default function NotFoundPage() {
   return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex flex-1 items-center justify-center bg-[#F8FAFC] py-20">
+    <PageLayout>
+      <div className="flex min-h-[calc(100vh-4.5rem)] items-center justify-center bg-[#F8FAFC] py-20 md:min-h-[calc(100vh-10.375rem)]">
         <div className="container mx-auto px-4 text-center">
           <div className="mx-auto mb-8 flex h-24 w-24 items-center justify-center rounded-3xl bg-[#0A2540]">
             <span className="text-4xl font-bold text-white">404</span>
@@ -38,8 +36,7 @@ export default function NotFoundPage() {
             </Link>
           </div>
         </div>
-      </main>
-      <Footer />
-    </div>
+      </div>
+    </PageLayout>
   );
 }
