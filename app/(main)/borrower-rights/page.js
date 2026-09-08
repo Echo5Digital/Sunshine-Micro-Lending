@@ -20,7 +20,7 @@ const RIGHTS = [
     subtitle: 'No Additional Fees',
     content: `Florida law (Statute 560.404) requires all licensed payday lenders to offer a 60-day grace period if you cannot repay your loan on time. During this grace period, the lender may not charge any additional fees, interest, or penalties. To access the grace period, you must request it from your lender before or on the due date. You will be required to enroll in and complete a consumer credit counseling program from a nonprofit credit counseling agency during the 60-day period.`,
     bullets: [
-      'Available to all borrowers—no exceptions',
+      'Available to all borrowers, no exceptions',
       'Zero additional fees during the grace period',
       'Must be requested before or on the due date',
       'Financial counseling required during the 60 days',
@@ -38,7 +38,7 @@ const RIGHTS = [
       'All lenders must check the database before approving',
       'Applies to all Florida-licensed payday lenders',
       'Protects against debt accumulation',
-      'Legally enforceable—lenders face penalties for violations',
+      'Legally enforceable: lenders face penalties for violations',
     ],
   },
   {
@@ -46,7 +46,7 @@ const RIGHTS = [
     color: 'bg-red-100 text-red-600',
     title: 'No Rollover Rule',
     subtitle: 'Prohibited by Florida Law',
-    content: `Loan rollovers—where a borrower pays a fee to extend a loan instead of repaying it—are strictly prohibited under Florida law. This is a critical consumer protection. Rollovers trap borrowers in cycles of debt where fees accumulate rapidly. In Florida, when your loan is due, you must either repay it, use the 60-day grace period, or default. No lender can legally roll over, renew, or refinance a payday loan.`,
+    content: `Loan rollovers, where a borrower pays a fee to extend a loan instead of repaying it, are strictly prohibited under Florida law. This is a critical consumer protection. Rollovers trap borrowers in cycles of debt where fees accumulate rapidly. In Florida, when your loan is due, you must either repay it, use the 60-day grace period, or default. No lender can legally roll over, renew, or refinance a payday loan.`,
     bullets: [
       'Rollovers are illegal under Florida Statute 560.404',
       'Renewals and refinancing are equally prohibited',
@@ -114,7 +114,7 @@ export default function BorrowerRightsPage() {
             </h1>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               Florida law provides payday loan borrowers with strong protections. Know your rights
-              before you borrow—and know what to do if a lender violates them.
+              before you borrow, and know what to do if a lender violates them.
             </p>
           </div>
         </div>
@@ -123,6 +123,10 @@ export default function BorrowerRightsPage() {
       {/* Rights Sections */}
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
+          <div className="mb-8 mx-auto max-w-3xl rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+            <strong>Placeholder notice:</strong> This page is draft content pending review and approval by
+            the company&apos;s attorney. Do not rely on this page as final legal terms.
+          </div>
           <div className="space-y-12">
             {RIGHTS.map((right, index) => (
               <div

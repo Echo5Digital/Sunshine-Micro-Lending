@@ -6,11 +6,11 @@ import { generatePageMetadata } from '@/lib/seo/metadata';
 import { generateBreadcrumbSchema } from '@/lib/seo/schema';
 
 export const metadata = generatePageMetadata({
-  title: 'About Sunshine Micro Lending | Florida Licensed Payday Lender',
+  title: 'About Sunshine Micro Lending | Florida Payday Lender',
   description:
-    'Learn about Sunshine Micro Lending—a Florida-licensed payday lender committed to transparency, responsible lending, and treating borrowers with respect.',
+    'Learn about Sunshine Micro Lending, a Florida payday lender committed to transparency, responsible lending, and treating borrowers with respect.',
   path: '/about',
-  keywords: ['about Sunshine Micro Lending', 'Florida payday lender', 'licensed payday lender Florida'],
+  keywords: ['about Sunshine Micro Lending', 'Florida payday lender'],
 });
 
 const VALUES = [
@@ -22,7 +22,7 @@ const VALUES = [
   {
     icon: Shield,
     title: 'Compliance',
-    description: 'We exceed Florida regulatory requirements—not just meet them. Your protections matter.',
+    description: 'We exceed Florida regulatory requirements, not just meet them. Your protections matter.',
   },
   {
     icon: Heart,
@@ -54,8 +54,8 @@ export default function AboutPage() {
               About Sunshine Micro Lending
             </h1>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              A Florida-licensed payday lender built on the conviction that short-term lending
-              should be transparent, respectful, and genuinely helpful.
+              A Florida payday lender built on the conviction that short-term lending should be
+              transparent, respectful, and genuinely helpful.
             </p>
           </div>
         </div>
@@ -69,28 +69,26 @@ export default function AboutPage() {
               <h2 className="mb-5 text-2xl font-semibold text-[#0A2540] sm:text-3xl">Our Mission</h2>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 Sunshine Micro Lending exists to provide Florida residents with access to
-                short-term credit when they need it most—without exploitation, confusion, or
+                short-term credit when they need it most, without exploitation, confusion, or
                 debt traps.
               </p>
               <p className="mb-4 text-muted-foreground leading-relaxed">
                 We believe that payday lending, done right, can be a legitimate financial tool.
                 That means clear fees, no rollovers, a genuine grace period when life gets hard,
-                and treating every borrower as a human being—not a revenue source.
+                and treating every borrower as a human being, not a revenue source.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                As a Florida-licensed lender regulated by the Office of Financial Regulation,
-                we follow every state law—and we go further by building our product around
-                borrower protection, not around maximizing fee extraction.
+                We are built to follow every Florida state law, and we go further by designing
+                our product around borrower protection, not around maximizing fee extraction.
               </p>
             </div>
 
             {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-3 gap-4">
               {[
                 { value: '$500', label: 'Maximum Loan', description: 'Florida legal limit' },
                 { value: '10%', label: 'Simple Fee', description: 'No hidden charges' },
                 { value: '60', label: 'Day Grace Period', description: 'At zero cost' },
-                { value: 'OFR', label: 'Florida Licensed', description: 'Regulated & compliant' },
               ].map((stat) => (
                 <div key={stat.label} className="rounded-xl border border-border bg-[#F8FAFC] p-6 text-center">
                   <div className="text-2xl font-bold text-[#00A6FB] sm:text-3xl">{stat.value}</div>
@@ -133,18 +131,16 @@ export default function AboutPage() {
               Florida Licensing & Compliance
             </h2>
             <p className="mb-6 text-muted-foreground">
-              Sunshine Micro Lending operates under a license issued by the Florida Office of Financial
-              Regulation (OFR). All our lending practices comply with Florida Statute 560—the Florida
-              Deferred Presentment Act.
+              All our lending practices are designed to comply with Florida Statute 560, the
+              Florida Deferred Presentment Act.
             </p>
             <div className="space-y-3">
               {[
-                'Licensed by the Florida Office of Financial Regulation (OFR)',
-                'Compliant with Florida Statute 560 (Deferred Presentment Act)',
-                'Connected to the Florida statewide payday loan database',
+                'Built to comply with Florida Statute 560 (Deferred Presentment Act)',
+                'Will check the Florida statewide payday loan database before funding any loan',
                 'Maximum loan amount adheres to $500 Florida cap',
                 'Fee structure complies with Florida maximum limits',
-                '60-day grace period provided as required by law',
+                '60-day grace period will be provided as required by law',
                 'No rollovers, renewals, or extensions offered',
                 'One active loan per borrower enforced via state database',
               ].map((item) => (
@@ -168,7 +164,7 @@ export default function AboutPage() {
       <CTASection
         variant="subtle"
         heading="Questions About Who We Are?"
-        subheading="Our team is available to answer any questions about our company, our license, or how we operate."
+        subheading="Our team is available to answer any questions about our company or how we operate."
         primaryCTA={{ label: 'Contact Us', href: '/contact' }}
         secondaryCTA={{ label: 'Apply Now', href: '/apply' }}
       />

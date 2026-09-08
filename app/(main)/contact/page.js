@@ -62,7 +62,7 @@ export default function ContactPage() {
             </h1>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
               Questions about your application, loan terms, or your rights as a borrower?
-              Our team is here to help—clearly and promptly.
+              Our team is here to help, clearly and promptly.
             </p>
           </div>
         </div>

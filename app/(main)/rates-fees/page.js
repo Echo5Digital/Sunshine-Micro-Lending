@@ -150,7 +150,7 @@ export default function RatesFeesPage() {
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   Florida law requires us to disclose APR. Because payday loans are short-term (7–31 days),
-                  the APR appears very high when annualized—even though the actual dollar cost is fixed and
+                  the APR appears very high when annualized, even though the actual dollar cost is fixed and
                   transparent. A $300 loan for 14 days costs $35 total, regardless of what the APR figure says.
                 </p>
                 <p className="mt-3 text-sm text-muted-foreground">
@@ -168,7 +168,7 @@ export default function RatesFeesPage() {
       <section className="section-padding-sm bg-[#F8FAFC]">
         <div className="container mx-auto px-4">
           <h2 className="mb-8 text-center text-2xl font-semibold text-[#0A2540]">
-            Complete Fee Table — All Loan Amounts
+            Complete Fee Table: All Loan Amounts
           </h2>
           <div className="overflow-x-auto rounded-xl border border-border shadow-card">
             <table className="w-full text-sm">
@@ -210,9 +210,9 @@ export default function RatesFeesPage() {
           <div className="mx-auto max-w-3xl rounded-xl border border-border bg-[#F8FAFC] p-6">
             <h3 className="mb-3 font-semibold text-[#0A2540]">Florida Regulatory Compliance</h3>
             <p className="text-sm text-muted-foreground leading-relaxed">
-              All fees charged by Sunshine Micro Lending are within the limits set by Florida Statute 560.404.
-              We are licensed and regulated by the Florida Office of Financial Regulation (OFR). Maximum fee is
-              10% of the check amount. Maximum verification fee is $5.00. Maximum loan amount is $500.
+              All fees charged by Sunshine Micro Lending are within the limits set by Florida
+              Statute 560.404. Maximum fee is 10% of the check amount. Maximum verification fee is $5.00.
+              Maximum loan amount is $500.
               No rollovers permitted. One active loan per borrower at any time.{' '}
               <Link href="/borrower-rights" className="text-[#00A6FB] hover:underline">
                 Learn more about your borrower rights.

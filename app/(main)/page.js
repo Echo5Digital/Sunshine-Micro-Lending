@@ -8,12 +8,12 @@ import { generateFaqPageSchema, generateHomeFinancialProductSchema } from '@/lib
 export const metadata = generatePageMetadata({
   title: 'Payday Loans Florida | Fast Cash Advance Online | Sunshine Micro Lending',
   description:
-    'Apply online for a payday loan up to $500 anywhere in Florida. State-licensed lender, transparent fees (10% + $5), fast decisions, no hidden charges.',
+    'Apply online for a payday loan up to $500 anywhere in Florida. Transparent fees (10% + $5), no hidden charges. Now accepting early applications ahead of launch.',
   path: '/',
   image: '/images/og-home.jpg',
   keywords: ['payday loans Florida', 'online payday loans FL', 'cash advance Florida', 'emergency loans Florida'],
   ogTitle: 'Payday Loans Florida | Sunshine Micro Lending',
-  ogDescription: 'Fast, transparent payday loans up to $500 for Florida residents. Licensed, no hidden fees.',
+  ogDescription: 'Fast, transparent payday loans up to $500 for Florida residents. No hidden fees.',
   twitterTitle: 'Payday Loans Florida | Sunshine Micro Lending',
   twitterDescription: 'Fast, transparent payday loans up to $500 for Florida residents.',
 });
@@ -28,16 +28,16 @@ const HOW_IT_WORKS_STEPS = [
   },
   {
     step: '02',
-    title: 'Get a Fast Decision',
+    title: 'Our Team Reviews Your Application',
     description:
-      'We verify your identity and check Florida\'s state lending database (state law allows one payday loan at a time). Most applicants get a decision the same day.',
+      'Once you\'re approved for lending, we\'ll verify your identity and check Florida\'s state lending database (state law allows one payday loan at a time) before following up with next steps.',
     icon: Shield,
   },
   {
     step: '03',
     title: 'Receive Your Funds',
     description:
-      'Once approved and signed, your money is sent directly to your bank account. Repayment is due on your scheduled date, 7 to 31 days later — one payment, no rollovers.',
+      'Once approved and your loan agreement is signed, your money is sent to your bank account. Repayment is due on your scheduled date, 7 to 31 days later, in one payment, with no rollovers.',
     icon: CheckCircle,
   },
 ];
@@ -62,8 +62,8 @@ const FEATURED_FAQS = [
     a: 'If you notify the lender before your due date that you cannot pay, Florida law requires a 60-day grace period with no additional fees or interest, provided you complete credit counseling with an approved agency. Payday loan rollovers are illegal in Florida.',
   },
   {
-    q: 'Is Sunshine Micro Lending a licensed payday lender?',
-    a: 'Yes. Sunshine Micro Lending is licensed as a deferred presentment provider by the Florida Office of Financial Regulation. The license can be verified on the OFR\'s public database.',
+    q: 'How fast can I get the money from a payday loan?',
+    a: 'Once your application is reviewed and approved, funds are sent directly to your checking account. Timing depends on your bank, but there are no unnecessary delays on our end.',
   },
 ];
 
@@ -107,7 +107,7 @@ export default async function HomePage() {
             {/* Badge */}
             <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-widest text-white/90 backdrop-blur-sm">
               <Shield className="h-3.5 w-3.5 text-[#22C55E]" />
-              Florida Licensed Payday Lender
+              Serving Florida Residents Statewide
             </div>
 
             {/* H1 */}
@@ -124,8 +124,7 @@ export default async function HomePage() {
             {/* Subheadline */}
             <p className="mb-8 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg">
               Borrow <strong className="text-white">$100–$500</strong> online with clear, capped
-              fees and no surprises. Sunshine Micro Lending is a Florida-licensed lender. Apply
-              in minutes from anywhere in the state.
+              fees and no surprises. Apply in minutes from anywhere in the state.
             </p>
 
             {/* CTAs */}
@@ -155,10 +154,10 @@ export default async function HomePage() {
           <div className="container mx-auto px-4">
             <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-4 lg:gap-0">
               {[
-                { text: 'Florida State-Licensed Lender' },
+                { text: 'Florida Residents Only' },
                 { text: 'Fees Capped by Law: 10% + $5' },
                 { text: 'No Rollovers, No Hidden Charges' },
-                { text: '100% Online — All 67 Florida Counties' },
+                { text: '100% Online, All 67 Florida Counties' },
               ].map((item, i) => (
                 <li
                   key={item.text}
@@ -187,7 +186,7 @@ export default async function HomePage() {
               How Do Payday Loans Work at Sunshine Micro Lending?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Getting a payday loan with us takes three simple steps — most applicants finish in under 10 minutes.
+              Getting a payday loan with us takes three simple steps. Most applicants finish in under 10 minutes.
             </p>
           </div>
 
@@ -265,7 +264,7 @@ export default async function HomePage() {
                 <p className="text-sm font-semibold text-white/90 sm:text-base">
                   Florida law caps payday loan fees at{' '}
                   <strong className="text-white">10% of the amount borrowed, plus a $5 state verification fee</strong>
-                  {' '}— and that&apos;s exactly what you pay at Sunshine Micro Lending. There is no interest on
+                  {', '}and that&apos;s exactly what you pay at Sunshine Micro Lending. There is no interest on
                   top, no rollover fees, and no hidden charges.{' '}
                   <strong className="text-white">A payday loan in Florida may never exceed $500.</strong>
                 </p>
@@ -300,7 +299,7 @@ export default async function HomePage() {
                   Repayment is a single payment due on your scheduled date, 7–31 days after funding.
                 </p>
                 <p className="mt-1 text-xs text-white/40">
-                  [APR disclosure line — supplied by counsel — goes here in small print.]
+                  [APR disclosure line, supplied by counsel, goes here in small print.]
                 </p>
 
                 {/* CTA link */}
@@ -430,15 +429,15 @@ export default async function HomePage() {
           {/* Four columns */}
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
 
-            {/* 1 — Licensed & Regulated */}
+            {/* 1 — Borrower Protections */}
             <div className="group flex flex-col rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_2px_16px_rgba(0,0,0,0.2)] backdrop-blur-sm transition-all duration-300 hover:-translate-y-1 hover:border-[#00A6FB]/40 hover:bg-white/8 hover:shadow-[0_8px_32px_rgba(0,166,251,0.15)]" data-animate data-delay="1">
               <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#00A6FB]/20 transition-colors duration-300 group-hover:bg-[#00A6FB]">
                 <Shield className="h-5 w-5 text-[#00A6FB] transition-colors duration-300 group-hover:text-white" />
               </div>
-              <h3 className="mb-2 font-semibold text-white">Licensed &amp; Regulated</h3>
+              <h3 className="mb-2 font-semibold text-white">Built Around Borrower Protection</h3>
               <p className="text-sm leading-relaxed text-white/60">
-                We&apos;re licensed by the Florida Office of Financial Regulation and follow every
-                borrower protection in Florida law — including the ones most lenders don&apos;t advertise.
+                We are built from the ground up to follow every borrower protection in Florida
+                law, including the ones most lenders do not advertise.
               </p>
             </div>
 
@@ -463,7 +462,7 @@ export default async function HomePage() {
               <p className="text-sm leading-relaxed text-white/60">
                 If you can&apos;t repay on time and tell us before your due date, Florida law gives you a{' '}
                 <strong className="text-white">60-day grace period with zero additional fees</strong>.
-                We honor it — and we explain it up front.
+                We honor it, and we explain it up front.
               </p>
             </div>
 
@@ -474,7 +473,7 @@ export default async function HomePage() {
               </div>
               <h3 className="mb-2 font-semibold text-white">Fast &amp; Fully Online</h3>
               <p className="text-sm leading-relaxed text-white/60">
-                Apply, sign, and receive funds without leaving home. We serve every county in Florida.
+                Apply from your phone or computer without leaving home. We serve every county in Florida.
               </p>
             </div>
 
@@ -560,7 +559,7 @@ export default async function HomePage() {
       {/* ─── FINAL CTA ───────────────────────────────────────────── */}
       <CTASection
         heading="Ready When You Are"
-        subheading="Apply in minutes. Clear fees, fast decisions, and the borrower protections Florida law promises you — all in one place."
+        subheading="Apply in minutes. Clear fees, fast decisions, and the borrower protections Florida law promises you, all in one place."
         subLine="Questions first? Call us at +1-800-SUNSHINE or read How It Works."
       />
     </>

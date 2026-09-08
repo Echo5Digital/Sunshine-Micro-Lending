@@ -27,22 +27,17 @@ const FAQS = [
   {
     category: 'general',
     question: 'What is a payday loan and how does it work in Florida?',
-    answer: 'A payday loan is a short-term, small-dollar loan typically repaid on your next payday. In Florida, payday loans are regulated by Florida Statute 560.404 and licensed by the Office of Financial Regulation (OFR). Sunshine Micro Lending offers loans from $100 to $500 with a 10% fee plus a $5 verification fee. You apply online, get verified, and if approved, repay the loan (plus fees) on your agreed repayment date—7 to 31 days for single payment loans.',
-  },
-  {
-    category: 'general',
-    question: 'Is Sunshine Micro Lending a licensed payday lender?',
-    answer: 'Yes. Sunshine Micro Lending is a Florida-licensed deferred presentment provider regulated by the Florida Office of Financial Regulation (OFR). All our loans comply with Florida Statute 560 and the Florida Deferred Presentment Act. You can verify our license at flofr.com.',
+    answer: 'A payday loan is a short-term, small-dollar loan typically repaid on your next payday. In Florida, payday loans are regulated by Florida Statute 560.404 and licensed by the Office of Financial Regulation (OFR). Sunshine Micro Lending offers loans from $100 to $500 with a 10% fee plus a $5 verification fee. You apply online, and once approved, repay the loan (plus fees) on your agreed repayment date, 7 to 31 days for single payment loans.',
   },
   {
     category: 'general',
     question: 'What states do you lend in?',
-    answer: 'We currently lend exclusively to Florida residents. This means you must live in Florida to be eligible for a loan from Sunshine Micro Lending. We do not accept applications from residents of other states at this time.',
+    answer: 'We plan to lend exclusively to Florida residents. This means you must live in Florida to be eligible for a loan from Sunshine Micro Lending. We do not accept applications from residents of other states.',
   },
   {
     category: 'general',
     question: 'Is this an online-only lender?',
-    answer: 'Yes. Sunshine Micro Lending operates entirely online. There are no physical branch locations to visit. Everything—from your application to signing your loan agreement to managing your repayment—is done securely through our website.',
+    answer: 'Yes. Sunshine Micro Lending operates entirely online. There are no physical branch locations to visit. Your application, loan agreement, and repayment management are all designed to be handled securely through our website.',
   },
   // Eligibility
   {
@@ -58,23 +53,23 @@ const FAQS = [
   {
     category: 'eligibility',
     question: 'Can I have more than one payday loan at a time?',
-    answer: 'No. Florida law (Statute 560.404) strictly prohibits borrowers from having more than one outstanding payday loan at a time from any Florida licensed lender. Before approving any application, we are required by law to check the statewide database to confirm you do not have an active loan. If you do, we cannot legally approve your application.',
+    answer: 'No. Florida law (Statute 560.404) strictly prohibits borrowers from having more than one outstanding payday loan at a time from any Florida licensed lender. Before approving any application, lenders are required by law to check the statewide database to confirm you do not have an active loan. If you do, your application cannot legally be approved.',
   },
   {
     category: 'eligibility',
     question: 'Is there a cooling-off period after I repay a loan?',
-    answer: 'Yes. Florida law requires a 24-hour cooling-off period after you repay a payday loan before you can take out another one. If you have taken out three consecutive loans, there is a 24-hour waiting period plus you must attend a credit counseling session before taking a fourth loan.',
+    answer: 'Yes. Florida law requires a 24-hour cooling-off period after you repay a payday loan before you can take out another one. If you have taken out six loans within a 12-month period, an additional 60-day cooling-off period plus a credit counseling requirement applies before another loan may be issued.',
   },
   // Application
   {
     category: 'application',
     question: 'What information do I need to apply?',
-    answer: 'You will need: your full legal name, address, email, and phone number; proof of income (employment details or income source); your checking account and bank routing numbers; a valid government-issued ID; your Social Security Number (for identity verification); and your desired loan amount.',
+    answer: 'You will need: your full legal name, address, email, and phone number; proof of income (employment details or income source); your checking account and bank routing numbers; and your desired loan amount. We do not collect your Social Security Number through our website.',
   },
   {
     category: 'application',
     question: 'How long does the application take?',
-    answer: 'The online application typically takes 5–10 minutes to complete. Once submitted, we begin processing immediately during business hours (Monday–Friday, 9AM–5PM EST). You will receive a lending decision as quickly as possible.',
+    answer: 'The online application typically takes 5–10 minutes to complete. Once submitted, our team will review your application during business hours (Monday–Friday, 9AM–5PM EST) and follow up with next steps.',
   },
   {
     category: 'application',
@@ -84,7 +79,7 @@ const FAQS = [
   {
     category: 'application',
     question: 'What happens after I submit my application?',
-    answer: 'After submitting, you will receive an email confirmation. Our team will review your application, verify your information (including checking the Florida statewide database), and notify you of a lending decision. If approved, you will receive your loan agreement showing the exact terms, fees, and repayment date before any commitment.',
+    answer: 'After submitting, you will receive an email confirmation. Our team will review your application and reach out with next steps. If approved, you will receive a loan agreement showing the exact terms, fees, and repayment date before any commitment.',
   },
   // Fees & Rates
   {
@@ -95,7 +90,7 @@ const FAQS = [
   {
     category: 'fees-rates',
     question: 'Why is the APR so high on a payday loan?',
-    answer: 'APR (Annual Percentage Rate) is a standardized way to express borrowing cost across a full year. Because payday loans are extremely short-term (7–31 days), the APR calculation amplifies even small fees dramatically. The actual dollar cost of a $300 loan is fixed at $35—the APR is just a mathematical way to compare across different loan types. Florida law requires us to disclose APR.',
+    answer: 'APR (Annual Percentage Rate) is a standardized way to express borrowing cost across a full year. Because payday loans are extremely short-term (7–31 days), the APR calculation amplifies even small fees dramatically. The actual dollar cost of a $300 loan is fixed at $35: the APR is just a mathematical way to compare across different loan types. Florida law requires us to disclose APR.',
   },
   {
     category: 'fees-rates',
@@ -111,7 +106,7 @@ const FAQS = [
   {
     category: 'repayment',
     question: 'How do I repay my loan?',
-    answer: 'Your repayment is made via ACH (Automated Clearing House) debit from your checking account on the agreed repayment date specified in your loan agreement. You authorize this when you sign your loan documents. The exact repayment amount (principal plus fees) is deducted automatically.',
+    answer: 'Repayment is designed to be made via ACH (Automated Clearing House) debit from your checking account on the agreed repayment date specified in your loan agreement, which you authorize when you sign your loan documents. The exact repayment amount (principal plus fees) is deducted on that date.',
   },
   {
     category: 'repayment',
@@ -121,7 +116,7 @@ const FAQS = [
   {
     category: 'repayment',
     question: 'What is the 60-day grace period?',
-    answer: 'If you cannot repay your loan on the due date, Florida law requires us to offer a 60-day grace period at no additional cost—no extra fees, no penalty interest. To use the grace period, you must request it before the due date, and you must enroll in and complete a consumer credit counseling program during the 60 days. Contact us as soon as you know you may need more time.',
+    answer: 'If you cannot repay your loan on the due date, Florida law requires us to offer a 60-day grace period at no additional cost: no extra fees, no penalty interest. To use the grace period, you must request it before the due date, and you must enroll in and complete a consumer credit counseling program during the 60 days. Contact us as soon as you know you may need more time.',
   },
   {
     category: 'repayment',

@@ -4,7 +4,7 @@ import { Footer } from '@/components/layout/Footer';
 import { Home, ArrowRight } from 'lucide-react';
 
 export const metadata = {
-  title: '404 — Page Not Found | Sunshine Micro Lending',
+  title: '404: Page Not Found | Sunshine Micro Lending',
   description: 'The page you are looking for could not be found.',
 };
 

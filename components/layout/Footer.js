@@ -22,7 +22,6 @@ const FOOTER_LINKS = {
 };
 
 const TRUST_ITEMS = [
-  { icon: Shield, text: 'Florida OFR Licensed' },
   { icon: Shield, text: 'SSL Secured' },
   { icon: Shield, text: 'No Hidden Fees' },
 ];
@@ -52,16 +51,15 @@ export function Footer() {
             </Link>
             <div className="mb-6 space-y-2 text-xs leading-relaxed text-white/50">
               <p>
-                Sunshine Micro Lending is licensed by the Florida Office of Financial Regulation,
-                License #[LICENSE #]. Payday loans (deferred presentment transactions) are governed
-                by Chapter 560, Florida Statutes.
+                Payday loans (deferred presentment transactions) are governed by Chapter 560,
+                Florida Statutes.
               </p>
               <p>
                 Maximum loan amount $500. Fee: 10% of amount financed plus a $5 verification fee.
                 Single-payment terms 7–31 days.
               </p>
-              <p className="italic text-white/30">[APR disclosure — counsel to supply]</p>
-              <p className="italic text-white/30">[Additional required disclosures — counsel to supply]</p>
+              <p className="italic text-white/30">[APR disclosure, counsel to supply]</p>
+              <p className="italic text-white/30">[Additional required disclosures, counsel to supply]</p>
             </div>
             {/* Contact Info */}
             <div className="space-y-2.5">

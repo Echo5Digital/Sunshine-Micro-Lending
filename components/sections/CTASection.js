@@ -28,16 +28,6 @@ export function CTASection({
       )}
 
       <div className="container relative mx-auto px-4 text-center">
-        {/* Badge */}
-        <div
-          className={`mb-6 inline-flex items-center gap-2 rounded-full px-4 py-1.5 text-xs font-semibold uppercase tracking-widest ${
-            isGradient ? 'bg-white/10 text-white' : 'bg-[#00A6FB]/10 text-[#00A6FB]'
-          }`}
-        >
-          <Shield className="h-3.5 w-3.5" />
-          Florida Licensed Lender
-        </div>
-
         {/* Heading */}
         <h2
           className={`mb-4 text-2xl font-bold sm:text-3xl md:text-4xl lg:text-5xl ${

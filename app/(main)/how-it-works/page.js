@@ -32,7 +32,7 @@ const STEPS = [
     icon: UserCheck,
     title: 'What Happens During Verification?',
     description:
-      'We verify your identity and eligibility according to Florida law. This includes checking the Florida statewide database to confirm you do not have another active payday loan. The $5 verification fee covers this compliance step.',
+      'Once we are licensed and reviewing applications, we will verify your identity and eligibility according to Florida law. This includes checking the Florida statewide database to confirm you do not have another active payday loan. The $5 verification fee covers this compliance step.',
     details: [
       'Identity verification for fraud prevention',
       'Florida statewide database check (required by law)',
@@ -45,12 +45,12 @@ const STEPS = [
     icon: ThumbsUp,
     title: 'How Does Loan Approval Work?',
     description:
-      'Once verified, you receive a lending decision. If approved, we present your loan agreement showing the exact loan amount, fees, and repayment date—before you commit. There is no obligation to accept.',
+      'Once verified, you receive a lending decision. If approved, we present your loan agreement showing the exact loan amount, fees, and repayment date, before you commit. There is no obligation to accept.',
     details: [
       'Receive clear loan terms including exact fee breakdown',
-      'Review and sign your loan agreement electronically',
+      'Review and sign your loan agreement',
       'No obligation until you sign and accept',
-      'Funds disbursed upon acceptance',
+      'Funds sent to your bank account upon acceptance',
     ],
   },
   {
@@ -58,10 +58,9 @@ const STEPS = [
     icon: CreditCard,
     title: 'What Are My Repayment Options?',
     description:
-      'Single payment loans are repaid in full on your agreed repayment date (7–31 days). Installment loans are repaid over 60–90 days in scheduled payments. If you need more time, a 60-day grace period is available.',
+      'Single payment loans are repaid in full on your agreed repayment date (7–31 days). If you need more time, a 60-day grace period is available.',
     details: [
       'Single payment on your scheduled date',
-      'Installment payments (biweekly or monthly)',
       '60-day grace period at no additional cost',
       'No rollovers permitted under Florida law',
     ],
@@ -98,7 +97,7 @@ export default function HowItWorksPage() {
               How Sunshine Micro Lending Works
             </h1>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              From application to repayment—a clear, step-by-step guide to our Florida payday loan process.
+              From application to repayment, a clear, step-by-step guide to our Florida payday loan process.
               No hidden steps, no surprises.
             </p>
           </div>
@@ -175,7 +174,7 @@ export default function HowItWorksPage() {
             <p className="mb-6 text-muted-foreground">
               Florida law requires us to offer a 60-day grace period upon request. This means that if you
               cannot make your payment on the due date, you can request additional time at absolutely
-              no additional cost—no extra fees, no penalty interest.
+              no additional cost: no extra fees, no penalty interest.
             </p>
 
             <div className="grid grid-cols-1 gap-3 md:grid-cols-2">

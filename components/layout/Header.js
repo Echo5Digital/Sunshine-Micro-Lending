@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
-  Menu, X, Sun, ArrowRight, Phone, Clock, Shield,
+  Menu, X, Sun, ArrowRight, Phone, Clock,
   Zap, DollarSign, FileText, MessageCircle, User, PenSquare, PhoneCall,
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -52,19 +52,12 @@ export function Header() {
         transition={{ type: 'spring', stiffness: 300, damping: 32 }}
       >
         <div
-          className="mx-auto flex h-10 max-w-7xl items-center justify-between rounded-b-2xl px-6"
+          className="mx-auto flex h-10 max-w-7xl items-center justify-end rounded-b-2xl px-6"
           style={{
             background: 'linear-gradient(135deg, #0A2540 0%, #031B4E 100%)',
             boxShadow: '0 4px 16px rgba(3,27,78,0.35)',
           }}
         >
-          {/* Left */}
-          <div className="flex items-center gap-3 text-xs text-white/80">
-            <Shield className="h-3.5 w-3.5 text-[#00A6FB]" />
-            <span className="font-semibold text-white">Florida Licensed Payday Lender</span>
-            <span className="h-3 w-px bg-white/20" />
-            <span className="text-white/60">OFR License</span>
-          </div>
           {/* Right */}
           <div className="flex items-center gap-3 text-xs text-white/80">
             <a href="tel:18005867846" className="flex items-center gap-2 transition-colors hover:text-white">
@@ -269,10 +262,6 @@ export function Header() {
                   Apply Now
                   <ArrowRight className="h-4 w-4" />
                 </Link>
-                <div className="mt-3 flex items-center justify-center gap-3 rounded-2xl bg-[#F8FAFF] px-4 py-3 text-xs text-[#64748B]">
-                  <Shield className="h-3.5 w-3.5 text-[#00A6FB]" />
-                  <span>Florida Licensed Lender · OFR Regulated</span>
-                </div>
               </div>
             </motion.div>
           </>

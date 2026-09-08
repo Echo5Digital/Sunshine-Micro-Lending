@@ -1,15 +1,10 @@
-import { Shield, Clock, CheckCircle, Lock, Award, Users } from 'lucide-react';
+import { Clock, CheckCircle, Lock, Award, Users } from 'lucide-react';
 
 const TRUST_ITEMS = [
   {
-    icon: Shield,
-    label: 'Florida Licensed',
-    description: 'OFR Regulated',
-  },
-  {
     icon: Clock,
-    label: 'Fast Decisions',
-    description: 'Same Business Day',
+    label: 'Quick Application',
+    description: 'Minutes, Not Hours',
   },
   {
     icon: CheckCircle,

@@ -32,13 +32,17 @@ export default function PrivacyPolicyPage() {
       <section className="section-padding bg-white">
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl prose prose-slate max-w-none">
+            <div className="mb-8 rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+              <strong>Placeholder notice:</strong> This page is draft content pending review and approval by
+              the company&apos;s attorney. Do not rely on this page as final legal terms.
+            </div>
             <div className="space-y-8 text-muted-foreground leading-relaxed">
 
               <div>
                 <h2 className="text-xl font-semibold text-[#0A2540] mb-3">1. Introduction</h2>
                 <p>
-                  Sunshine Micro Lending (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is a Florida-licensed deferred
-                  presentment provider. This Privacy Policy describes how we collect, use, disclose, and safeguard
+                  Sunshine Micro Lending (&quot;Company,&quot; &quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) is a deferred
+                  presentment provider in Florida. This Privacy Policy describes how we collect, use, disclose, and safeguard
                   your personal information when you visit our website at sunshinemicrolending.com and when
                   you apply for or receive a loan from us.
                 </p>
@@ -53,7 +57,6 @@ export default function PrivacyPolicyPage() {
                 <h3 className="text-base font-semibold text-[#0A2540] mb-2">2.1 Information You Provide</h3>
                 <ul className="list-disc pl-5 space-y-1.5">
                   <li>Name, address, email address, and phone number</li>
-                  <li>Social Security Number (for identity verification)</li>
                   <li>Employment and income information</li>
                   <li>Bank account and routing numbers</li>
                   <li>Government-issued ID information</li>
@@ -77,7 +80,7 @@ export default function PrivacyPolicyPage() {
                   <li>Verify your identity as required by law</li>
                   <li>Check the Florida statewide payday loan database (legally required)</li>
                   <li>Communicate with you about your loan</li>
-                  <li>Process loan repayments via ACH</li>
+                  <li>Process loan repayments via ACH once your loan is active</li>
                   <li>Comply with Florida and federal law</li>
                   <li>Prevent fraud and unauthorized transactions</li>
                   <li>Improve our website and services</li>

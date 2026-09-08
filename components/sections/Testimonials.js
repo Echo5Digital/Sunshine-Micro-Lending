@@ -8,7 +8,7 @@ export function Testimonials({ testimonials = [] }) {
       location: 'Miami, FL',
       rating: 5,
       content:
-        'Sunshine was incredibly transparent about all fees upfront. No hidden charges—exactly what they promised. Got my funds quickly and the repayment process was simple.',
+        'Sunshine was incredibly transparent about all fees upfront. No hidden charges, exactly what they promised. Got my funds quickly and the repayment process was simple.',
       loanAmount: 300,
     },
     {

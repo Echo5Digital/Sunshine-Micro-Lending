@@ -7,18 +7,18 @@ import { generateFinancialProductSchema, generateBreadcrumbSchema } from '@/lib/
 import { formatCurrency } from '@/lib/utils';
 
 export const metadata = generatePageMetadata({
-  title: 'Payday Loan Options in Florida | Single Payment & Installment',
+  title: 'Payday Loan Options in Florida | Single Payment',
   description:
-    'Compare Sunshine Micro Lending loan options. Single payment loans (7–31 days) and installment loans (60–90 days). Up to $500. Simple 10% fee + $5 verification.',
+    'Compare Sunshine Micro Lending loan options. Single payment loans (7–31 days), up to $500. Simple 10% fee + $5 verification. Installment loans coming soon.',
   path: '/loan-options',
-  keywords: ['payday loan options Florida', 'installment loan Florida', 'single payment loan', 'short term loan options'],
+  keywords: ['payday loan options Florida', 'single payment loan', 'short term loan options'],
 });
 
 const LOAN_PRODUCTS = [
   {
     type: 'single_payment',
     name: 'Single Payment Loan',
-    badge: 'Most Popular',
+    badge: 'Available Now',
     badgeColor: 'bg-[#00A6FB]/10 text-[#00A6FB]',
     cardBorder: 'border-[#00A6FB]',
     description: 'Borrow what you need and repay in one payment. Perfect for covering an immediate gap until your next payday.',
@@ -26,8 +26,7 @@ const LOAN_PRODUCTS = [
     term: { min: 7, max: 31, unit: 'days' },
     fee: '10% + $5',
     features: [
-      'Online application — no branch visit',
-      'Quick lending decision',
+      'Online application, no branch visit',
       'One-time repayment on your payday',
       'No prepayment penalties',
       '60-day grace period available',
@@ -41,32 +40,17 @@ const LOAN_PRODUCTS = [
       { amount: 500, fee: 55, total: 555 },
     ],
   },
-  {
-    type: 'installment',
-    name: 'Installment Loan',
-    badge: 'Extended Terms',
-    badgeColor: 'bg-[#22C55E]/10 text-[#16A34A]',
-    cardBorder: 'border-border',
-    description: 'Repay over 60–90 days with scheduled biweekly or monthly payments. More flexibility for larger needs.',
-    amount: { min: 100, max: 500 },
-    term: { min: 60, max: 90, unit: 'days' },
-    fee: '10% + $5',
-    features: [
-      'Biweekly or monthly payment schedule',
-      'Online application and management',
-      '60–90 day repayment window',
-      'No prepayment penalties',
-      '60-day grace period available',
-      'Structured payment plan',
-    ],
-    examples: [
-      { amount: 200, fee: 25, total: 225, payments: '2 payments of ~$112.50' },
-      { amount: 300, fee: 35, total: 335, payments: '2 payments of ~$167.50' },
-      { amount: 400, fee: 45, total: 445, payments: '3 payments of ~$148.33' },
-      { amount: 500, fee: 55, total: 555, payments: '3 payments of ~$185.00' },
-    ],
-  },
 ];
+
+const INSTALLMENT_PRODUCT = {
+  name: 'Installment Loan',
+  badge: 'Coming Soon',
+  description:
+    'Repay over 60–90 days with scheduled biweekly payments. Fee is capped by Florida law at 8% of your remaining balance per biweekly payment. This product is not yet available, check back soon or ask us for updates.',
+  amount: { min: 100, max: 500 },
+  term: { min: 60, max: 90, unit: 'days' },
+  fee: '8% of remaining balance, biweekly',
+};
 
 const ELIGIBILITY = [
   { icon: Users, label: 'Florida Resident', detail: 'You must live in Florida' },
@@ -91,23 +75,11 @@ export default function LoanOptionsPage() {
     feePercentage: 10,
     verificationFee: 5,
   });
-  const p2Schema = generateFinancialProductSchema({
-    name: 'Installment Payday Loan',
-    description: 'Payday loan repaid over 60–90 days in scheduled payments.',
-    type: 'installment',
-    minAmount: 100,
-    maxAmount: 500,
-    termMin: 60,
-    termMax: 90,
-    feePercentage: 10,
-    verificationFee: 5,
-  });
 
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(bSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(p1Schema) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(p2Schema) }} />
 
       {/* Hero */}
       <section className="bg-[#F8FAFC] py-12 md:py-16 border-b border-border">
@@ -119,8 +91,8 @@ export default function LoanOptionsPage() {
               Loan Options for Florida Borrowers
             </h1>
             <p className="mt-4 text-base text-muted-foreground sm:text-lg">
-              Two straightforward loan types. Both with the same transparent fee structure.
-              Choose what fits your needs and repayment timeline.
+              A straightforward single-payment loan available now, with an installment
+              option on the way. Transparent fees, no surprises.
             </p>
           </div>
         </div>
@@ -185,9 +157,6 @@ export default function LoanOptionsPage() {
                           <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Amount</th>
                           <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Fee</th>
                           <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Total Repay</th>
-                          {product.type === 'installment' && (
-                            <th className="px-4 py-2.5 text-left text-xs font-semibold text-muted-foreground">Payments</th>
-                          )}
                         </tr>
                       </thead>
                       <tbody className="divide-y divide-border">
@@ -196,9 +165,6 @@ export default function LoanOptionsPage() {
                             <td className="px-4 py-2.5 font-medium text-[#0A2540]">{formatCurrency(ex.amount)}</td>
                             <td className="px-4 py-2.5 text-muted-foreground">{formatCurrency(ex.fee)}</td>
                             <td className="px-4 py-2.5 font-semibold text-[#0A2540]">{formatCurrency(ex.total)}</td>
-                            {product.type === 'installment' && ex.payments && (
-                              <td className="px-4 py-2.5 text-xs text-muted-foreground">{ex.payments}</td>
-                            )}
                           </tr>
                         ))}
                       </tbody>
@@ -218,6 +184,44 @@ export default function LoanOptionsPage() {
                 </div>
               </article>
             ))}
+
+            {/* Installment Loan — Coming Soon */}
+            <article className="flex flex-col rounded-2xl border-2 border-dashed border-border bg-white shadow-card overflow-hidden">
+              <div className="bg-[#F8FAFC] p-6 border-b border-border">
+                <div className="flex items-start justify-between gap-4 mb-4">
+                  <h2 className="text-xl font-bold text-[#0A2540]">{INSTALLMENT_PRODUCT.name}</h2>
+                  <span className="rounded-full px-3 py-1 text-xs font-semibold whitespace-nowrap bg-[#E2E8F0] text-muted-foreground">
+                    {INSTALLMENT_PRODUCT.badge}
+                  </span>
+                </div>
+                <p className="text-sm text-muted-foreground mb-5">{INSTALLMENT_PRODUCT.description}</p>
+
+                <div className="grid grid-cols-3 gap-3">
+                  <div className="text-center rounded-lg bg-white border border-border p-3">
+                    <div className="text-sm font-bold text-[#0A2540]">${INSTALLMENT_PRODUCT.amount.min}–${INSTALLMENT_PRODUCT.amount.max}</div>
+                    <div className="text-xs text-muted-foreground">Loan Range</div>
+                  </div>
+                  <div className="text-center rounded-lg bg-white border border-border p-3">
+                    <div className="text-sm font-bold text-[#0A2540]">{INSTALLMENT_PRODUCT.term.min}–{INSTALLMENT_PRODUCT.term.max} days</div>
+                    <div className="text-xs text-muted-foreground">Term</div>
+                  </div>
+                  <div className="text-center rounded-lg bg-white border border-border p-3">
+                    <div className="text-xs font-bold text-[#0A2540]">{INSTALLMENT_PRODUCT.fee}</div>
+                    <div className="text-xs text-muted-foreground">Fee</div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-auto p-6">
+                <button
+                  type="button"
+                  disabled
+                  className="flex w-full cursor-not-allowed items-center justify-center gap-2 rounded-xl bg-[#E2E8F0] px-6 py-3.5 text-sm font-semibold text-muted-foreground"
+                >
+                  Not Yet Available
+                </button>
+              </div>
+            </article>
           </div>
         </div>
       </section>

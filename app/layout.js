@@ -18,7 +18,7 @@ export const metadata = {
     template: '%s | Sunshine Micro Lending',
   },
   description:
-    'Get a fast, transparent payday loan in Florida. Up to $500. 10% fee + $5 verification. Florida licensed lender. Apply online in minutes.',
+    'Apply for a fast, transparent payday loan in Florida. Up to $500. 10% fee + $5 verification. Now accepting early applications ahead of launch.',
   keywords: [
     'payday loans Florida',
     'online payday loans FL',
@@ -27,7 +27,7 @@ export const metadata = {
     'emergency loans Florida',
     'payday loan online',
     'fast cash Florida',
-    'licensed payday lender Florida',
+    'payday lender Florida',
   ],
   authors: [{ name: 'Sunshine Micro Lending' }],
   creator: 'Sunshine Micro Lending',
@@ -41,7 +41,7 @@ export const metadata = {
     siteName: 'Sunshine Micro Lending',
     title: 'Sunshine Micro Lending | Fast Payday Loans in Florida',
     description:
-      'Get a fast, transparent payday loan in Florida. Up to $500. Licensed Florida lender. Apply online in minutes.',
+      'Apply for a fast, transparent payday loan in Florida. Up to $500. Now accepting early applications ahead of launch.',
     images: [
       {
         url: '/og-image.png',
@@ -54,7 +54,7 @@ export const metadata = {
   twitter: {
     card: 'summary_large_image',
     title: 'Sunshine Micro Lending | Fast Payday Loans in Florida',
-    description: 'Fast, transparent payday loans in Florida. Up to $500. Licensed lender.',
+    description: 'Fast, transparent payday loans in Florida. Up to $500. Now accepting early applications.',
     images: ['/og-image.png'],
     creator: '@sunshinelending',
   },

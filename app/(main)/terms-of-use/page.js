@@ -28,6 +28,11 @@ export default function TermsOfUsePage() {
         <div className="container mx-auto px-4">
           <div className="mx-auto max-w-3xl space-y-8 text-muted-foreground leading-relaxed">
 
+            <div className="rounded-xl border border-amber-300 bg-amber-50 p-4 text-sm text-amber-900">
+              <strong>Placeholder notice:</strong> This page is draft content pending review and approval by
+              the company&apos;s attorney. Do not rely on this page as final legal terms.
+            </div>
+
             <div>
               <h2 className="text-xl font-semibold text-[#0A2540] mb-3">1. Acceptance of Terms</h2>
               <p>
@@ -40,9 +45,9 @@ export default function TermsOfUsePage() {
             <div>
               <h2 className="text-xl font-semibold text-[#0A2540] mb-3">2. Service Description</h2>
               <p>
-                Sunshine Micro Lending is a Florida-licensed deferred presentment provider (payday lender)
-                regulated by the Florida Office of Financial Regulation. We offer short-term payday loans
-                to qualifying Florida residents only, subject to Florida Statute 560 and all applicable laws.
+                Sunshine Micro Lending offers short-term payday loans (deferred presentment
+                transactions) to qualifying Florida residents only, subject to Florida Statute 560
+                and all applicable laws.
               </p>
             </div>
 
@@ -65,7 +70,6 @@ export default function TermsOfUsePage() {
                 <li>Maximum loan amount of $500 per loan</li>
                 <li>Fee of 10% of the loan amount plus a $5 verification fee</li>
                 <li>Single payment loans: 7–31 day repayment period</li>
-                <li>Installment loans: 60–90 day repayment period</li>
                 <li>No rollovers, renewals, or refinancing permitted</li>
                 <li>60-day grace period available upon request at no additional cost</li>
                 <li>Only one active loan permitted at any time</li>
@@ -85,9 +89,10 @@ export default function TermsOfUsePage() {
             <div>
               <h2 className="text-xl font-semibold text-[#0A2540] mb-3">6. ACH Authorization</h2>
               <p>
-                By accepting a loan, you authorize Sunshine Micro Lending to initiate ACH debit transactions
-                from your designated checking account for loan repayment on the agreed due date(s). You may
-                revoke this authorization by contacting us at least 3 business days before the scheduled debit.
+                By accepting a loan, you authorize Sunshine Micro Lending to initiate ACH debit
+                transactions from your designated checking account for loan repayment on the agreed
+                due date(s). You may revoke this authorization by contacting us at least 3 business
+                days before the scheduled debit.
               </p>
             </div>
 

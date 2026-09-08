@@ -2,19 +2,18 @@ import { Breadcrumb } from '@/components/layout/Breadcrumb';
 import { ApplicationForm } from '@/components/forms/ApplicationForm';
 import { generatePageMetadata } from '@/lib/seo/metadata';
 import { generateBreadcrumbSchema } from '@/lib/seo/schema';
-import { Shield, Lock, CheckCircle, Clock } from 'lucide-react';
+import { Lock, CheckCircle, Clock } from 'lucide-react';
 
 export const metadata = generatePageMetadata({
   title: 'Apply for a Payday Loan in Florida | Up to $500',
   description:
-    'Apply online for a Florida payday loan up to $500. Secure form. Quick decision. See your exact fees before you commit. Florida licensed lender.',
+    'Apply online for a Florida payday loan up to $500. Secure form. See your exact fees before you commit. Now accepting early applications ahead of launch.',
   path: '/apply',
   keywords: ['apply payday loan Florida', 'payday loan application', 'apply for cash advance Florida'],
 });
 
 const TRUST_INDICATORS = [
   { icon: Lock, text: 'SSL Encrypted' },
-  { icon: Shield, text: 'Florida Licensed' },
   { icon: CheckCircle, text: 'No Obligation' },
   { icon: Clock, text: 'Quick Decision' },
 ];
@@ -75,7 +74,6 @@ export default function ApplyPage() {
                     { label: 'Minimum Amount', value: '$100' },
                     { label: 'Fee', value: '10% + $5' },
                     { label: 'Single Payment Term', value: '7–31 days' },
-                    { label: 'Installment Term', value: '60–90 days' },
                     { label: 'Grace Period', value: '60 days free' },
                   ].map((item) => (
                     <div key={item.label} className="flex justify-between border-b border-border pb-2.5">

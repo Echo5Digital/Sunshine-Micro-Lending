@@ -31,7 +31,6 @@ export function ApplicationForm() {
     resolver: zodResolver(applicationSchema),
     defaultValues: {
       loanAmount: 300,
-      loanType: 'single_payment',
       hasBankAccount: false,
       consentGiven: false,
     },
@@ -163,37 +162,6 @@ export function ApplicationForm() {
           </div>
         </div>
 
-        {/* Loan Type */}
-        <div className="mb-4">
-          <Label className="mb-2 block">Loan Type *</Label>
-          <div className="grid grid-cols-2 gap-3">
-            {[
-              { value: 'single_payment', label: 'Single Payment', detail: '7–31 days' },
-              { value: 'installment', label: 'Installment', detail: '60–90 days' },
-            ].map((type) => (
-              <label
-                key={type.value}
-                className={`flex cursor-pointer items-start gap-3 rounded-lg border p-4 transition-all ${
-                  watch('loanType') === type.value
-                    ? 'border-[#00A6FB] bg-[#00A6FB]/5'
-                    : 'border-border hover:border-[#00A6FB]/40'
-                }`}
-              >
-                <input
-                  type="radio"
-                  value={type.value}
-                  {...register('loanType')}
-                  className="mt-0.5 accent-[#00A6FB]"
-                />
-                <div>
-                  <p className="text-sm font-medium text-[#0A2540]">{type.label}</p>
-                  <p className="text-xs text-muted-foreground">{type.detail}</p>
-                </div>
-              </label>
-            ))}
-          </div>
-          {errors.loanType && <p className="form-error">{errors.loanType.message}</p>}
-        </div>
       </div>
 
       {/* ─── Personal Information ─────────────────────── */}
@@ -314,8 +282,9 @@ export function ApplicationForm() {
               onCheckedChange={(checked) => setValue('hasBankAccount', checked === true)}
             />
             <Label htmlFor="hasBankAccount" className="cursor-pointer text-sm leading-relaxed">
-              I confirm that I have an active checking account in my name. I understand that loan
-              repayment will be collected via ACH debit from this account on the agreed repayment date.
+              I confirm that I have an active checking account in my name. I understand that, once
+              my loan is approved and funded, repayment will be collected via ACH debit from this
+              account on the agreed repayment date.
             </Label>
           </div>
           {errors.hasBankAccount && (
@@ -356,7 +325,7 @@ export function ApplicationForm() {
           <Info className="mt-0.5 h-4 w-4 shrink-0 text-[#00A6FB]" />
           <p className="text-xs text-muted-foreground">
             Submitting this form is not an agreement or approval. You will receive your exact loan
-            terms—including all fees—before any commitment. Florida law provides you a right to decline.
+            terms, including all fees, before any commitment. Florida law provides you a right to decline.
           </p>
         </div>
       </div>
@@ -376,12 +345,12 @@ export function ApplicationForm() {
             Submitting Application...
           </>
         ) : (
-          <>Submit Application — Free</>
+          <>Submit Application (Free)</>
         )}
       </Button>
 
       <p className="mt-4 text-center text-xs text-muted-foreground">
-        No application fee. No credit score impact. Florida licensed lender.
+        No application fee. No credit score impact.
       </p>
     </form>
   );
