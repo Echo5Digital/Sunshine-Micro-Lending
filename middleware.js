@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { jwtVerify } from 'jose';
 
 // Simple in-memory rate limiter (use Redis/KV for production multi-instance)
 const rateLimitMap = new Map();
@@ -45,7 +46,20 @@ if (typeof setInterval !== 'undefined') {
   }, 300000);
 }
 
-export function middleware(request) {
+// Edge-runtime-safe JWT verify. Duplicated from lib/auth.js (rather than
+// imported) because lib/auth.js is marked 'server-only' and cannot be
+// imported into middleware, which runs on the Edge runtime, not Node.
+async function verifyAdminSessionEdge(token) {
+  try {
+    const secret = new TextEncoder().encode(process.env.SESSION_SECRET);
+    const { payload } = await jwtVerify(token, secret);
+    return payload;
+  } catch {
+    return null;
+  }
+}
+
+export async function middleware(request) {
   const { pathname } = request.nextUrl;
   const ip = getClientIp(request);
 
@@ -89,6 +103,19 @@ export function middleware(request) {
 
     if (botPatterns.some((pattern) => pattern.test(userAgent))) {
       return NextResponse.json({ error: 'Forbidden' }, { status: 403 });
+    }
+  }
+
+  // Guard the admin panel — everything under /admin except the login page
+  // itself requires a valid session cookie.
+  if (pathname.startsWith('/admin') && pathname !== '/admin/login') {
+    const token = request.cookies.get('admin_session')?.value;
+    const session = token ? await verifyAdminSessionEdge(token) : null;
+
+    if (!session) {
+      const loginUrl = new URL('/admin/login', request.url);
+      loginUrl.searchParams.set('redirect', pathname);
+      return NextResponse.redirect(loginUrl);
     }
   }
 

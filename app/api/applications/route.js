@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import { applicationSchema } from '@/lib/validations';
 import { generateReferenceNumber, getClientIp, sanitizeInput } from '@/lib/utils';
 import { sendApplicationEmail, sendAdminNotificationEmail } from '@/lib/email/resend';
+import { LAUNCHING_SOON } from '@/lib/config';
 
 export async function POST(request) {
   try {
@@ -40,9 +41,15 @@ export async function POST(request) {
         lastName: sanitizeInput(data.lastName),
         email: sanitizeInput(data.email.toLowerCase()),
         phone: sanitizeInput(data.phone),
+        dateOfBirth: new Date(data.dateOfBirth),
+        streetAddress: sanitizeInput(data.streetAddress),
+        city: sanitizeInput(data.city),
+        state: data.state,
+        zipCode: sanitizeInput(data.zipCode),
         loanAmount,
         loanType: data.loanType,
         payFrequency: data.payFrequency,
+        nextPayDate: new Date(data.nextPayDate),
         employmentStatus: data.employmentStatus,
         hasBankAccount: data.hasBankAccount,
         consentGiven: data.consentGiven,
@@ -52,10 +59,12 @@ export async function POST(request) {
         referenceNumber,
         estimatedFee,
         verificationFee,
-        status: 'pending',
         loanPurpose: data.loanPurpose ? sanitizeInput(data.loanPurpose) : undefined,
-        monthlyIncome: data.monthlyIncome || undefined,
-        employer: data.employer ? sanitizeInput(data.employer) : undefined,
+        monthlyIncome: data.monthlyIncome,
+        employer: sanitizeInput(data.employer),
+        documentFileId: data.documentFileId,
+        documentUrl: data.documentUrl,
+        documentName: data.documentName ? sanitizeInput(data.documentName) : undefined,
       });
     } catch (dbError) {
       console.error('Database error:', dbError);
@@ -70,6 +79,7 @@ export async function POST(request) {
         loanAmount,
         estimatedFee,
         loanType: data.loanType,
+        launchingSoon: LAUNCHING_SOON,
       });
     } catch (emailError) {
       console.error('Email error (applicant):', emailError);
@@ -91,7 +101,14 @@ export async function POST(request) {
     }
 
     return NextResponse.json(
-      { success: true, referenceNumber, message: 'Application submitted successfully.' },
+      {
+        success: true,
+        referenceNumber,
+        message: LAUNCHING_SOON
+          ? 'Application received. We are launching soon.'
+          : 'Application submitted successfully.',
+        launchingSoon: LAUNCHING_SOON,
+      },
       { status: 201 }
     );
   } catch (error) {

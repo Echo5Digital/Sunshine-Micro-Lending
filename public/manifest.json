@@ -1,7 +1,7 @@
 {
   "name": "Sunshine Micro Lending",
   "short_name": "Sunshine Lending",
-  "description": "Florida licensed payday lender. Fast, transparent loans up to $500.",
+  "description": "Florida payday lending. Fast, transparent loans up to $500.",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#F8FAFC",
