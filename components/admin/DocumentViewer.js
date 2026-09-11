@@ -4,19 +4,8 @@ import { useEffect, useState } from 'react';
 import { FileText, ExternalLink, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 
-const IMAGE_EXTENSIONS = new Set(['jpg', 'jpeg', 'png', 'gif', 'webp']);
-
-function getExtension(name) {
-  if (!name) {
-    return '';
-  }
-  const parts = name.split('.');
-  return parts.length > 1 ? parts.pop().toLowerCase() : '';
-}
-
 export function DocumentViewer({ applicationId, documentName }) {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
   const [url, setUrl] = useState(null);
 
   useEffect(() => {
@@ -29,7 +18,6 @@ export function DocumentViewer({ applicationId, documentName }) {
 
     async function loadUrl() {
       setLoading(true);
-      setError('');
       try {
         const response = await fetch(`/api/admin/applications/${applicationId}/document-url`);
         const result = await response.json();
@@ -39,10 +27,8 @@ export function DocumentViewer({ applicationId, documentName }) {
         if (!cancelled) {
           setUrl(result.url);
         }
-      } catch (err) {
-        if (!cancelled) {
-          setError(err.message);
-        }
+      } catch {
+        // Intentionally silent — the "Open in new tab" button just won't appear.
       } finally {
         if (!cancelled) {
           setLoading(false);
@@ -65,9 +51,6 @@ export function DocumentViewer({ applicationId, documentName }) {
     );
   }
 
-  const extension = getExtension(documentName);
-  const isImage = IMAGE_EXTENSIONS.has(extension);
-
   return (
     <div className="space-y-2">
       <div className="flex flex-col gap-2 rounded-lg border border-border p-3 sm:flex-row sm:items-center sm:justify-between">
@@ -89,25 +72,6 @@ export function DocumentViewer({ applicationId, documentName }) {
         <div className="flex items-center justify-center rounded-lg border border-border p-10 text-muted-foreground">
           <Loader2 className="h-5 w-5 animate-spin" />
         </div>
-      )}
-
-      {error && <p className="form-error">{error}</p>}
-
-      {!loading && url && isImage && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={url}
-          alt={documentName}
-          className="max-h-[50vh] w-full rounded-lg border border-border object-contain sm:max-h-[600px]"
-        />
-      )}
-
-      {!loading && url && !isImage && (
-        <iframe
-          src={url}
-          title={documentName}
-          className="h-[300px] w-full rounded-lg border border-border sm:h-[450px] lg:h-[600px]"
-        />
       )}
     </div>
   );

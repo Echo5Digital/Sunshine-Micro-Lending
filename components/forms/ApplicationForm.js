@@ -205,11 +205,11 @@ export function ApplicationForm() {
           <CheckCircle className="h-8 w-8 text-[#16A34A]" />
         </div>
         <h2 className="mb-3 text-2xl font-bold text-[#0A2540]">
-          {LAUNCHING_SOON ? "Thanks for your interest — we're launching soon!" : 'Application Received!'}
+          {LAUNCHING_SOON ? 'Submitted Successfully!' : 'Application Received!'}
         </h2>
         <p className="mb-4 text-muted-foreground">
           {LAUNCHING_SOON
-            ? 'We are not yet open for lending, but we have received your information and will reach out by email as soon as we launch. Nothing has been submitted for a lending decision.'
+            ? "Thank you — your information has been submitted successfully. We're finalizing our launch and will get back to you by email as soon as we're ready to make a lending decision."
             : 'Thank you for applying. We have received your application and will contact you shortly with a lending decision.'}
         </p>
         {referenceNumber && (
