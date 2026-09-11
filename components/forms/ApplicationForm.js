@@ -209,7 +209,7 @@ export function ApplicationForm() {
         </h2>
         <p className="mb-4 text-muted-foreground">
           {LAUNCHING_SOON
-            ? "Thank you — your information has been submitted successfully. We're finalizing our launch and will get back to you by email as soon as we're ready to make a lending decision."
+            ? 'Thank you — your information has been submitted successfully. We will get back to you soon.'
             : 'Thank you for applying. We have received your application and will contact you shortly with a lending decision.'}
         </p>
         {referenceNumber && (
