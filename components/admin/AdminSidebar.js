@@ -2,13 +2,14 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, FileText, MessageSquare, Users, Sun } from 'lucide-react';
+import { LayoutDashboard, FileText, MessageSquare, Users, History, Sun } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 const NAV_ITEMS = [
   { href: '/admin', label: 'Dashboard', icon: LayoutDashboard, exact: true },
   { href: '/admin/applications', label: 'Applications', icon: FileText },
   { href: '/admin/messages', label: 'Messages', icon: MessageSquare },
+  { href: '/admin/activity', label: 'Log', icon: History },
   { href: '/admin/staff', label: 'Staff', icon: Users },
 ];
 

@@ -53,6 +53,9 @@ export function StaffManager({ initialStaff }) {
           <CardTitle>Current Staff</CardTitle>
         </CardHeader>
         <CardContent>
+          <p className="mb-2 text-center text-xs text-muted-foreground sm:hidden">
+            Swipe left to see more columns →
+          </p>
           <div className="overflow-x-auto rounded-lg border border-border">
             <table className="w-full min-w-[420px] text-left text-sm">
               <thead className="border-b border-border bg-[#F8FAFC] text-xs uppercase tracking-wide text-muted-foreground">

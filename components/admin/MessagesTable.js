@@ -1,12 +1,13 @@
 'use client';
 
-import Link from 'next/link';
-import { Eye } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import { Badge } from '@/components/ui/Badge';
 import { formatDateShort, truncate } from '@/lib/utils';
 import { getContactStatusLabel, getContactStatusBadgeVariant } from '@/lib/contactStatus';
 
 export function MessagesTable({ messages }) {
+  const router = useRouter();
+
   if (messages.length === 0) {
     return (
       <div className="rounded-xl border border-border bg-white p-10 text-center text-sm text-muted-foreground">
@@ -15,16 +16,19 @@ export function MessagesTable({ messages }) {
     );
   }
 
+  function goToMessage(id) {
+    router.push(`/admin/messages/${id}`);
+  }
+
   return (
     <div className="rounded-xl border border-border bg-white">
       <p className="border-b border-border px-4 py-1.5 text-center text-xs text-muted-foreground sm:hidden">
         Swipe left to see more columns →
       </p>
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[680px] text-left text-sm">
+        <table className="w-full min-w-[640px] text-left text-sm">
           <thead className="border-b border-border bg-[#F8FAFC] text-xs uppercase tracking-wide text-muted-foreground">
             <tr>
-              <th className="px-4 py-3 sr-only">View</th>
               <th className="px-4 py-3">From</th>
               <th className="px-4 py-3">Subject</th>
               <th className="px-4 py-3">Status</th>
@@ -33,16 +37,20 @@ export function MessagesTable({ messages }) {
           </thead>
           <tbody className="divide-y divide-border">
             {messages.map((msg) => (
-              <tr key={msg._id} className="transition-colors hover:bg-[#F8FAFC]">
-                <td className="px-4 py-3">
-                  <Link
-                    href={`/admin/messages/${msg._id}`}
-                    aria-label={`View message from ${msg.name}`}
-                    className="flex h-9 w-9 items-center justify-center rounded-lg text-muted-foreground transition-colors hover:bg-[#00A6FB]/10 hover:text-[#00A6FB]"
-                  >
-                    <Eye className="h-4 w-4" />
-                  </Link>
-                </td>
+              <tr
+                key={msg._id}
+                role="link"
+                tabIndex={0}
+                aria-label={`View message from ${msg.name}`}
+                onClick={() => goToMessage(msg._id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    goToMessage(msg._id);
+                  }
+                }}
+                className="cursor-pointer transition-colors hover:bg-[#F8FAFC] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#00A6FB]"
+              >
                 <td className="px-4 py-3">
                   <div className="font-medium text-[#0A2540]">{msg.name}</div>
                   <div className="text-xs text-muted-foreground">{msg.email}</div>

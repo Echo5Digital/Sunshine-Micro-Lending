@@ -66,7 +66,7 @@ export async function PATCH(request, { params }) {
     );
   }
 
-  const { action, value } = validation.data;
+  const { action, value, reason } = validation.data;
   const actor = { adminUserId: session.adminUserId, name: session.name };
 
   try {
@@ -76,7 +76,7 @@ export async function PATCH(request, { params }) {
     let application;
     switch (action) {
       case 'status_change':
-        application = await changeApplicationStatus({ applicationId: id, newStatus: value, actor });
+        application = await changeApplicationStatus({ applicationId: id, newStatus: value, actor, reason });
         break;
       case 'note_added':
         application = await addApplicationNote({ applicationId: id, note: value || '', actor });
@@ -95,6 +95,9 @@ export async function PATCH(request, { params }) {
   } catch (error) {
     if (error.message === 'Application not found') {
       return NextResponse.json({ error: 'Application not found.' }, { status: 404 });
+    }
+    if (error.message === 'A reason is required when declining an application.') {
+      return NextResponse.json({ error: error.message }, { status: 422 });
     }
     console.error('Admin application update error:', error);
     return NextResponse.json({ error: 'Failed to update application.' }, { status: 500 });

@@ -59,6 +59,7 @@ export async function PATCH(request, { params }) {
   }
 
   const { action, value } = validation.data;
+  const actor = { adminUserId: session.adminUserId, name: session.name };
 
   try {
     const { connectDB } = await import('@/lib/db');
@@ -67,10 +68,10 @@ export async function PATCH(request, { params }) {
     let message;
     switch (action) {
       case 'status_change':
-        message = await changeContactStatus({ contactId: id, newStatus: value });
+        message = await changeContactStatus({ contactId: id, newStatus: value, actor });
         break;
       case 'note_added':
-        message = await addContactNote({ contactId: id, note: value || '' });
+        message = await addContactNote({ contactId: id, note: value || '', actor });
         break;
       default:
         return NextResponse.json({ error: 'Unknown action.' }, { status: 422 });

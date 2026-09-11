@@ -99,7 +99,7 @@ export default function RootLayout({ children }) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
         />
       </head>
-      <body className="min-h-screen bg-background font-sans antialiased">
+      <body className="min-h-screen overflow-x-hidden bg-background font-sans antialiased">
         <Analytics />
         {children}
         <CookieConsent />

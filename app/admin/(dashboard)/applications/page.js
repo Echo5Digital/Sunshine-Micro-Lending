@@ -8,7 +8,7 @@ export const metadata = {
 };
 
 const LIST_FIELDS =
-  'firstName lastName email phone loanAmount loanType status assignedTo veritecChecked nextPayDate createdAt statusChangedAt';
+  'firstName lastName email phone loanAmount loanType status assignedTo veritecChecked nextPayDate createdAt statusChangedAt documentName';
 
 async function getApplications(searchParams) {
   const status = searchParams.status || undefined;

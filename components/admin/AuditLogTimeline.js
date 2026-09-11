@@ -12,13 +12,17 @@ const ACTION_LABELS = {
 
 function describeChange(entry) {
   if (entry.action === 'status_change') {
-    return `${getStatusLabel(entry.oldValue)} → ${getStatusLabel(entry.newValue)}`;
+    const newValue = entry.newValue;
+    if (newValue && typeof newValue === 'object') {
+      return `${getStatusLabel(entry.oldValue)} → ${getStatusLabel(newValue.status)} — "${newValue.reason}"`;
+    }
+    return `${getStatusLabel(entry.oldValue)} → ${getStatusLabel(newValue)}`;
   }
   if (entry.action === 'assigned') {
     return `${entry.oldValue || 'Unassigned'} → ${entry.newValue || 'Unassigned'}`;
   }
   if (entry.action === 'note_added') {
-    return null; // note content isn't shown inline to keep the timeline compact
+    return entry.newValue ? `"${entry.newValue}"` : null;
   }
   return null;
 }

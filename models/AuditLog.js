@@ -2,10 +2,23 @@ import mongoose from 'mongoose';
 
 const AuditLogSchema = new mongoose.Schema(
   {
+    entityType: {
+      type: String,
+      required: true,
+      enum: ['application', 'contact'],
+      default: 'application',
+    },
+    // applicationId is kept as the canonical field name (rather than a generic
+    // entityId) for backward compatibility with existing records and the
+    // per-application query in app/admin/(dashboard)/applications/[id]/page.js.
     applicationId: {
       type: mongoose.Schema.Types.ObjectId,
       ref: 'Application',
-      required: true,
+      index: true,
+    },
+    contactId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Contact',
       index: true,
     },
     adminUserId: { type: mongoose.Schema.Types.ObjectId, ref: 'AdminUser', required: true },
@@ -22,6 +35,8 @@ const AuditLogSchema = new mongoose.Schema(
 );
 
 AuditLogSchema.index({ applicationId: 1, createdAt: -1 });
+AuditLogSchema.index({ contactId: 1, createdAt: -1 });
+AuditLogSchema.index({ createdAt: -1 });
 
 export const AuditLog =
   mongoose.models.AuditLog || mongoose.model('AuditLog', AuditLogSchema);

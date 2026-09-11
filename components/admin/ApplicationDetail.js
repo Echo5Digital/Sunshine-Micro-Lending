@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
-import { formatCurrency, formatDate, formatDateShort } from '@/lib/utils';
+import { formatCurrency, formatDate, formatDateShort, calculateLoanFee } from '@/lib/utils';
 import { getStatusLabel, getStatusBadgeVariant } from '@/lib/applicationStatus';
 import { StatusDropdown } from '@/components/admin/StatusDropdown';
 import { VeritecCheckAction } from '@/components/admin/VeritecCheckAction';
@@ -23,9 +23,10 @@ function Field({ label, value }) {
   );
 }
 
-export function ApplicationDetail({ application, auditLog }) {
+export function ApplicationDetail({ application, auditLog, duplicates }) {
   const [current, setCurrent] = useState(application);
   const [log, setLog] = useState(auditLog);
+  const loanFee = calculateLoanFee(current.loanAmount);
 
   function handleUpdated(updatedApplication, newLogEntry) {
     setCurrent(updatedApplication);
@@ -56,6 +57,35 @@ export function ApplicationDetail({ application, auditLog }) {
         </Badge>
       </div>
 
+      {current.status === 'declined' && current.declineReason && (
+        <div className="mb-6 rounded-lg border border-destructive/30 bg-destructive/5 p-3 text-sm">
+          <div className="font-medium text-destructive">Decline reason</div>
+          <p className="mt-1 text-[#0A2540]">{current.declineReason}</p>
+        </div>
+      )}
+
+      {duplicates && duplicates.length > 0 && (
+        <div className="mb-6 rounded-lg border border-amber-300 bg-amber-50 p-3 text-sm">
+          <div className="font-medium text-amber-800">⚠️ Possible duplicate applicant</div>
+          <ul className="mt-1 space-y-1">
+            {duplicates.map((dup) => {
+              const matchField = dup.email === current.email ? 'email' : 'phone';
+              return (
+                <li key={dup._id} className="text-[#0A2540]">
+                  This {matchField} applied on {formatDateShort(dup.createdAt)} as{' '}
+                  <Link
+                    href={`/admin/applications/${dup._id}`}
+                    className="font-medium text-[#00A6FB] hover:underline"
+                  >
+                    {dup.firstName} {dup.lastName}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
         <div className="space-y-6 lg:col-span-2">
           <Card>
@@ -80,8 +110,10 @@ export function ApplicationDetail({ application, auditLog }) {
             <CardContent className="grid grid-cols-1 gap-4 sm:grid-cols-2">
               <Field label="Loan Amount" value={formatCurrency(current.loanAmount)} />
               <Field label="Loan Type" value={current.loanType?.replace('_', ' ')} />
+              <Field label="Fee (10% + $5 verification)" value={formatCurrency(loanFee.totalFee)} />
+              <Field label="Total Repayment" value={formatCurrency(loanFee.totalRepayment)} />
               <Field label="Pay Frequency" value={current.payFrequency} />
-              <Field label="Next Pay Date" value={current.nextPayDate ? formatDate(current.nextPayDate) : null} />
+              <Field label="Due Date" value={current.nextPayDate ? formatDate(current.nextPayDate) : null} />
               <Field label="Employer" value={current.employer} />
               <Field label="Monthly Income" value={formatCurrency(current.monthlyIncome)} />
               <Field label="Employment Status" value={current.employmentStatus?.replace(/_/g, ' ')} />
@@ -105,7 +137,8 @@ export function ApplicationDetail({ application, auditLog }) {
             <CardContent>
               <InternalNotesField
                 applicationId={current._id}
-                initialNote={current.internalNotes}
+                notes={current.notes}
+                legacyNote={current.internalNotes}
                 onUpdated={handleUpdated}
               />
             </CardContent>

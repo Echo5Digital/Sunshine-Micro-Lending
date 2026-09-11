@@ -21,9 +21,18 @@ async function getApplicationDetail(id) {
     return null;
   }
 
-  const auditLog = await AuditLog.find({ applicationId: id }).sort({ createdAt: -1 }).lean();
+  const [auditLog, duplicates] = await Promise.all([
+    AuditLog.find({ applicationId: id }).sort({ createdAt: -1 }).lean(),
+    Application.find({
+      _id: { $ne: application._id },
+      $or: [{ email: application.email }, { phone: application.phone }],
+    })
+      .select('firstName lastName email phone createdAt')
+      .sort({ createdAt: -1 })
+      .lean(),
+  ]);
 
-  return JSON.parse(JSON.stringify({ application, auditLog }));
+  return JSON.parse(JSON.stringify({ application, auditLog, duplicates }));
 }
 
 export default async function ApplicationDetailPage({ params }) {
@@ -34,5 +43,5 @@ export default async function ApplicationDetailPage({ params }) {
     notFound();
   }
 
-  return <ApplicationDetail application={data.application} auditLog={data.auditLog} />;
+  return <ApplicationDetail application={data.application} auditLog={data.auditLog} duplicates={data.duplicates} />;
 }

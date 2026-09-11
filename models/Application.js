@@ -48,11 +48,23 @@ const ApplicationSchema = new mongoose.Schema(
       default: 'new',
     },
     statusChangedAt: { type: Date, default: null },
+    declineReason: { type: String, trim: true, maxlength: 1000, default: null },
     assignedTo: { type: String, trim: true, maxlength: 200, default: null },
     veritecChecked: { type: Boolean, default: false },
     veritecCheckedAt: { type: Date, default: null },
     veritecCheckedBy: { type: String, trim: true, maxlength: 200, default: null },
     internalNotes: { type: String },
+    notes: {
+      type: [
+        {
+          text: { type: String, required: true, trim: true, maxlength: 5000 },
+          authorId: { type: mongoose.Schema.Types.ObjectId, ref: 'AdminUser' },
+          authorName: { type: String, required: true, trim: true, maxlength: 200 },
+          createdAt: { type: Date, default: Date.now },
+        },
+      ],
+      default: [],
+    },
     consentGiven: { type: Boolean, required: true, default: false },
     consentTimestamp: { type: Date },
     ipAddress: { type: String, maxlength: 45 },
