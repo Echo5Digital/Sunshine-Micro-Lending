@@ -35,7 +35,7 @@ const nextConfig = {
               "script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.clarity.ms https://c.clarity.ms",
               "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
               "font-src 'self' https://fonts.gstatic.com",
-              "img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://ik.imagekit.io",
+              "img-src 'self' data: https://images.unsplash.com https://www.google-analytics.com https://www.googletagmanager.com https://res.cloudinary.com",
               "connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.clarity.ms",
               "frame-src 'none'",
               "object-src 'none'",

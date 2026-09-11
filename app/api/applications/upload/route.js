@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { uploadApplicantDocument } from '@/lib/imagekit';
+import { uploadApplicantDocument } from '@/lib/cloudinary';
 import { sanitizeInput, generateReferenceNumber } from '@/lib/utils';
 
 const ALLOWED_TYPES = ['application/pdf', 'image/jpeg', 'image/jpg', 'image/png'];
